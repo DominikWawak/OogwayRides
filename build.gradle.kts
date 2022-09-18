@@ -5,7 +5,7 @@ plugins {
     application
 }
 
-group = "org.oogwayrides"
+group = "org.oogwayrides.console.main"
 version = "1.0-SNAPSHOT"
 
 repositories {
