@@ -1,4 +1,4 @@
-package org.oogwayrides.console.main
+package org.oogwayrides.console.models
 
 data class Adventure(
     var organizer : User? = null,
