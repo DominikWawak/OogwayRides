@@ -5,10 +5,12 @@ import org.litote.kmongo.*
 
 import org.oogwayrides.console.main.colAdventures
 import org.oogwayrides.console.main.colUsers
+import org.oogwayrides.console.main.database
 import org.oogwayrides.console.models.Adventure
 import org.oogwayrides.console.models.User
 import org.oogwayrides.console.views.OogwayRidesView
 import org.oogwayrides.console.views.controller
+import java.lang.Error
 
 
 private val logger = KotlinLogging.logger {}
@@ -63,11 +65,12 @@ class Controller {
         val username = readLine()!!
         print("Write a short Bio: ")
         val bio = readLine()!!
-        user= User(username,bio,"") // toRemove
+        user= User(username,bio,"")
         colUsers.insertOne(User(username,bio,""))
 
     }
     fun addAdventure(){
+        val id = (0..10000).random()
         print("Enter Location ")
         val location = readLine()!!
         print("Date and Time: ")
@@ -76,8 +79,13 @@ class Controller {
         val plan = readLine()!!
         print("vehicle: ")
         val vehicle = readLine()!!
+       try{
+           colAdventures.insertOne(Adventure(id,user,vehicle,date,location,plan))
+       }
+       catch (e: Exception){
 
-        colAdventures.insertOne(Adventure(user,vehicle,date,location,plan))
+       }
+
     }
 
     fun tripsNearMe(){
@@ -87,10 +95,48 @@ class Controller {
 //    val list : List<Adventure> = colAdventures.find(Adventure::locaton eq searchLocation).toList()
         val list : List<Adventure> = colAdventures.find().toList()
 
+        val searchList : ArrayList<Adventure> = arrayListOf()
         for (item in list){
-            if(item.locaton?.contains(searchLocation,true) == true)
+            if(item.locaton?.contains(searchLocation,true) == true) {
                 println(item)
+                searchList.add(item)
+            }
         }
+        println("")
+        println("OPTIONS:")
+        println("1. Join Trip \n" +
+                "-1. Go Back")
+
+        do {
+            println("choose Option")
+            var input = readLine()!!
+            when(input.toInt()) {
+                1 -> {
+                    println("Enter index of Adventure to join")
+                    var index = readLine()!!
+                    var newAdv :Adventure? = searchList[index.toInt()]
+                    if (newAdv != null) {
+
+                        user?.let {newAdv.passangers.add(it)}
+                        println(newAdv)
+                        //colAdventures.updateOne(searchList[index.toInt()].json, newAdv).
+                        //colAdventures.findOne(searchList[index.toInt()].json)
+
+                        colAdventures.updateOne(Adventure::_id eq searchList[index.toInt()]._id,push(Adventure::passangers, user))
+
+
+                    }
+                    oogwayRidesView.launchMenu()
+
+                }
+
+                -1 -> oogwayRidesView.launchMenu()
+                else -> println("Invalid Option")
+            }
+            println()
+        } while (input.toInt() != -1)
+
+
     }
 
 
@@ -114,7 +160,7 @@ class Controller {
         print("new vehicle: ")
         val vehicle = readLine()!!
 
-        var updatedAdv: Adventure = Adventure(user,vehicle,date,location,plan)
+        var updatedAdv: Adventure = Adventure(advList[input.toInt()]._id,user,vehicle,date,location,plan)
         if( input.toInt() < advList.size && input.toInt()>=0){
             // update
             colAdventures.updateOne(advList[input.toInt()].json,updatedAdv)
