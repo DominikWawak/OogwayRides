@@ -12,8 +12,12 @@ var controller =Controller()
 private val logger = KotlinLogging.logger {}
 val client = KMongo.createClient()
 val database = client.getDatabase("OogwayRides")
+val database_test = client.getDatabase("OogwayRides_test")
 val colUsers = database.getCollection<User>()
 val colAdventures = database.getCollection<Adventure>()
+val colUsers_t = database_test.getCollection<User>()
+val colAdventures_t = database_test.getCollection<Adventure>()
+
 
 fun main() {
 
