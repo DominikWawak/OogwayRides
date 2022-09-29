@@ -8,11 +8,12 @@ import org.oogwayrides.console.main.colAdventures
 import org.oogwayrides.console.main.colAdventures_t
 import org.oogwayrides.console.main.colUsers
 import org.oogwayrides.console.models.Adventure
+import org.oogwayrides.console.models.AdventureMemStore
 import org.oogwayrides.console.models.User
 import org.oogwayrides.console.views.OogwayRidesView
 
-
-private val logger = KotlinLogging.logger {}
+val memStore = AdventureMemStore()
+val logger = KotlinLogging.logger {}
 var oogwayRidesView = OogwayRidesView()
 var user: User? = null
 
@@ -40,14 +41,18 @@ class Controller {
             input = oogwayRidesView.loginMenu()
 
             when (input) {
-                1 -> addUser()
+                1 -> {
+                    print("Enter User Name: ")
+                    val username = readLine()!!
+                    print("Write a short Bio: ")
+                    val bio = readLine()!!
+                    addUser(username,bio)}
                 2 -> {
 
                     println("Enter username: ")
                     var loginUserName = readLine()!!
 
-                    if (colUsers.findOne(User::name eq loginUserName) != null) {
-                        user = colUsers.findOne(User::name eq loginUserName)
+                    if (logIn(loginUserName)) {
                         oogwayRidesView.launchMenu()
                     }
                 }
@@ -63,11 +68,18 @@ class Controller {
     }
 
 
-    fun addUser() {
-        print("Enter User Name: ")
-        val username = readLine()!!
-        print("Write a short Bio: ")
-        val bio = readLine()!!
+
+    fun logIn(loginUserName:String): Boolean {
+        if (colUsers.findOne(User::name eq loginUserName) != null) {
+            user = colUsers.findOne(User::name eq loginUserName)
+            return true
+        }
+        else{
+            return false
+        }
+    }
+
+    fun addUser(username:String,bio:String) {
         user = User(username, bio, "")
         colUsers.insertOne(User(username, bio, ""))
 
@@ -85,11 +97,8 @@ class Controller {
         val vehicle = readLine()!!
         print("number of passangers: ")
         val numOfPass = readLine()!!
-        try {
-            colAdventures.insertOne(Adventure(id, numOfPass.toInt(), user, vehicle, date, location, plan))
-        } catch (e: Exception) {
 
-        }
+        memStore.addAdventure(id,location,date,plan,vehicle,numOfPass)
 
     }
 
@@ -102,38 +111,7 @@ class Controller {
         }
     }
 
-    fun addPassenger(
-        newAdv: Adventure,
-        selectedAdv: Adventure,
-        user: User,
-        colAdventures: MongoCollection<Adventure>
-    ): Boolean {
-        if (newAdv != null && newAdv.numOfPass != 0 && !selectedAdv.organizer?.equals(user)!!) {
 
-            user?.let { newAdv.passangers.add(it) }
-            colAdventures.updateOne(
-                Adventure::_id eq selectedAdv._id,
-                setValue(Adventure::numOfPass, selectedAdv.numOfPass - 1)
-            )
-            println(newAdv)
-            //colAdventures.updateOne(searchList[index.toInt()].json, newAdv).
-            //colAdventures.findOne(searchList[index.toInt()].json)
-
-            colAdventures.updateOne(Adventure::_id eq selectedAdv._id, push(Adventure::passangers, user))
-            return true
-
-        } else {
-            logger.error { "number of passangers exceeded or adventure is null or you can add yourself to your adventure" }
-            return false
-        }
-    }
-
-    fun deleteAdventure(advList: List<Adventure>, input: Int, colAdventures: MongoCollection<Adventure>) {
-
-        if (input < advList.size && input >= 0) {
-            colAdventures.deleteOne(advList[input].json)
-        }
-    }
 
     fun editAdventure(advList: List<Adventure>) {
         println("Enter index of Adventure you want to edit ")
@@ -149,12 +127,7 @@ class Controller {
         print("new number of passangers?: ")
         val numOfPass = readLine()!!
 
-        var updatedAdv: Adventure =
-            Adventure(advList[input.toInt()]._id, numOfPass.toInt(), user, vehicle, date, location, plan)
-        if (input.toInt() < advList.size && input.toInt() >= 0) {
-            // update
-            colAdventures.updateOne(advList[input.toInt()].json, updatedAdv)
-        }
+       memStore.editAdventure(advList,input,location,date,plan,vehicle,numOfPass)
     }
 
 
@@ -164,15 +137,9 @@ class Controller {
         var searchLocation = readLine()!!
         //println(colAdventures.find().toList())
 //    val list : List<Adventure> = colAdventures.find(Adventure::locaton eq searchLocation).toList()
-        val list: List<Adventure> = colAdventures.find().toList()
 
-        val searchList: ArrayList<Adventure> = arrayListOf()
-        for (item in list) {
-            if (item.locaton?.contains(searchLocation, true) == true) {
-                println(item)
-                searchList.add(item)
-            }
-        }
+        //Search
+        var  searchList = memStore.search(searchLocation)
         println("")
         println("OPTIONS:")
         println(
@@ -189,7 +156,7 @@ class Controller {
                     var index = readLine()!!
                     var newAdv: Adventure? = searchList[index.toInt()]
                     if (newAdv != null) {
-                        user?.let { addPassenger(newAdv, searchList[index.toInt()], it, colAdventures) }
+                        user?.let { memStore.addPassenger(newAdv, searchList[index.toInt()], it, colAdventures) }
                     }
                     oogwayRidesView.launchMenu()
 
@@ -206,12 +173,7 @@ class Controller {
 
 
 
-    fun filterByLocation(advList: List<Adventure>) {
-        var sortedList: List<Adventure> = advList.sortedBy { adventure -> adventure.locaton }
-        for (item in sortedList) {
-            println(item)
-        }
-    }
+
 
 
     fun showMyTrips() {
@@ -242,12 +204,12 @@ class Controller {
                 2 -> {
                     println("Enter index of Adventure you want to remove ")
                     var input = readLine()!!
-                    deleteAdventure(drivingToList, input.toInt(), colAdventures)
+                    memStore.deleteAdventure(drivingToList, input.toInt(), colAdventures)
                     oogwayRidesView.launchMenu()
                 }
 
                 3 -> {
-                    filterByLocation(drivingToList)
+                    memStore.filterByLocation(drivingToList)
                     showMyTrips()
                 }
 

@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.7.10"
     application
+    id("org.openjfx.javafxplugin") version "0.0.8"
 
 }
 
@@ -13,6 +14,10 @@ repositories {
     mavenCentral()
 }
 
+
+javafx {
+    modules("javafx.controls", "javafx.fxml")
+}
 
 
 dependencies {

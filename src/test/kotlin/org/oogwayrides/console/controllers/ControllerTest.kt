@@ -48,12 +48,12 @@ internal class ControllerTest {
 
         // check that passanger cant be added when no seats are available
         controller.addAdventure(adv1)
-        assertFalse(controller.addPassenger(adv1,adv1,user1, colAdventures_t)) // No passengers left
+        assertFalse(memStore.addPassenger(adv1,adv1,user1, colAdventures_t)) // No passengers left
 
         // check that passenger gets added
         controller.addAdventure(adv2_same_id)
-        assertTrue(controller.addPassenger(adv2_same_id,adv2_same_id,user1, colAdventures_t))
-        assertEquals(user1,adv2_same_id.passangers[0])
+        assertTrue(memStore.addPassenger(adv2_same_id,adv2_same_id,user2, colAdventures_t))
+        assertEquals(user2,adv2_same_id.passangers[0])
 
         //check that the size got decrimented
         var adv = colAdventures_t.findOne(Adventure::_id eq adv2_same_id._id)
@@ -73,7 +73,7 @@ internal class ControllerTest {
 
         //Assert before delete
         assertEquals(2,drivingToList.size)
-        controller.deleteAdventure(drivingToList,1, colAdventures_t)
+        memStore.deleteAdventure(drivingToList,1, colAdventures_t)
         // delete and assert it got deleted
         drivingToList = colAdventures_t.find(Adventure::organizer eq user1).toList()
         assertEquals(1,drivingToList.size)
