@@ -26,7 +26,7 @@ interface AdventureStore {
 
     fun filterByLocation(advList: List<Adventure>)
 
-    fun search(searchLocation:String): ArrayList<Adventure>
+    fun search(searchLocation:String,list:List<Adventure>): ArrayList<Adventure>
 
 
 }

@@ -74,8 +74,10 @@ class AdventureMemStore:AdventureStore {
         }
     }
 
-    override fun search(searchLocation: String): ArrayList<Adventure> {
-        val list: List<Adventure> = colAdventures.find().toList()
+
+    //make general 1 taks per function
+
+    override fun search(searchLocation: String, list:List<Adventure>): ArrayList<Adventure> {
 
         val searchList: ArrayList<Adventure> = arrayListOf()
         for (item in list) {
