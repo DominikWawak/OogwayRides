@@ -11,6 +11,7 @@ import org.oogwayrides.console.models.Adventure
 import org.oogwayrides.console.models.AdventureMemStore
 import org.oogwayrides.console.models.User
 import org.oogwayrides.console.views.OogwayRidesView
+import kotlin.math.log
 
 val memStore = AdventureMemStore()
 val logger = KotlinLogging.logger {}
@@ -81,7 +82,13 @@ class Controller {
 
     fun addUser(username:String,bio:String) {
         user = User(username, bio, "")
-        colUsers.insertOne(User(username, bio, ""))
+        if(colUsers.findOne(User::name eq user!!.name) == null) {
+            colUsers.insertOne(User(username, bio, ""))
+            logger.info { "user Added" }
+        }
+        else{
+            logger.error { "user already exists" }
+        }
 
     }
 
@@ -135,11 +142,8 @@ class Controller {
     fun tripsNearMe() {
         print("Search Location: ")
         var searchLocation = readLine()!!
-        //println(colAdventures.find().toList())
-//    val list : List<Adventure> = colAdventures.find(Adventure::locaton eq searchLocation).toList()
-
-        //Search
-        var  searchList = memStore.search(searchLocation)
+        val list: List<Adventure> = colAdventures.find().toList()
+        var  searchList = memStore.search(searchLocation,list)
         println("")
         println("OPTIONS:")
         println(

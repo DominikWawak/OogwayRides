@@ -9,6 +9,8 @@ import org.oogwayrides.console.controllers.user
 import org.oogwayrides.console.models.Adventure
 import tornadofx.*
 
+
+var  adventures = colAdventures.find().toList().asObservable()
 class LogIn : View() {
         override val root = gridpane() {
             var logIn: TextField? = null
@@ -43,7 +45,7 @@ class LogIn : View() {
 
 
 
-                setPrefSize(600.0, 360.0)
+                setPrefSize(900.0, 360.0)
             }
         }
 
@@ -52,15 +54,16 @@ class LogIn : View() {
 
     class MainView : View() {
         override val root = gridpane() {
-            var  adventures = colAdventures.find().toList().asObservable()
+
 
             var search: TextField? = null
             row {
-                user?.let { label(it.name)
+                user?.let { label("    user: "+it.name)
                     }
                 button("Search") {
                     action {
-                        adventures.setAll(search?.let { memStore.search(it.text).toList().asObservable() }!!)
+
+                        adventures.setAll(search?.let { memStore.search(it.text,colAdventures.find().toList()).toList().asObservable() }!!)
 
                     }
                 }
@@ -90,14 +93,44 @@ class LogIn : View() {
                        // readonlyColumn("organizer", Adventure::organizer.name)
                         readonlyColumn("Location", Adventure::locaton)
                         readonlyColumn("Date",Adventure::date)
+                         readonlyColumn("plan",Adventure::plan)
+                         readonlyColumn("Space Left",Adventure::numOfPass)
                          useMaxWidth = true
                          gridpaneConstraints {
                              marginTop = 10.0
                              columnSpan = 20
+
+                         }
+
+                         onUserSelect {
+                             adventure ->  println(adventure._id)
                          }
                     }
 
                 }
+
+            row {
+
+
+                form {
+                    hbox(20) {
+                        fieldset("Add/update") {
+                            hbox(20) {
+                                vbox {
+                                    field("Field l1a") { textfield() }
+                                    field("Field l2a") { textfield() }
+                                }
+                                vbox {
+                                    field("Field l1b") { textfield() }
+                                    field("Field l2b") { textfield() }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+            }
             }
         }
 
@@ -134,6 +167,9 @@ class Register : View() {
                 }
             }
         }
+
+
+
 
     }
 }

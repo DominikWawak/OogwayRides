@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">1.414s</div>
+<div class="counter">1.479s</div>
 <p>duration</p>
 </div>
 </td>
@@ -82,17 +82,17 @@
 </thead>
 <tr>
 <td class="success">addAdventure()</td>
-<td class="success">0.099s</td>
+<td class="success">0.113s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">addPassenger()</td>
-<td class="success">1.162s</td>
+<td class="success">1.211s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">deleteAdventure()</td>
-<td class="success">0.153s</td>
+<td class="success">0.155s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -108,10 +108,10 @@
 <h2>Standard error</h2>
 <span class="code">
 <pre>[Test worker] INFO org.mongodb.driver.client - MongoClient with metadata {&quot;driver&quot;: {&quot;name&quot;: &quot;mongo-java-driver|sync|kmongo&quot;, &quot;version&quot;: &quot;4.7.1&quot;}, &quot;os&quot;: {&quot;type&quot;: &quot;Darwin&quot;, &quot;name&quot;: &quot;Mac OS X&quot;, &quot;architecture&quot;: &quot;x86_64&quot;, &quot;version&quot;: &quot;11.4&quot;}, &quot;platform&quot;: &quot;Java/Eclipse Adoptium/17+35|Kotlin/1.7.10&quot;} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, streamFactoryFactory=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[OverridableUuidRepresentationCodecRegistry{wrapped=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}]}, uuidRepresentation=UNSPECIFIED}, org.litote.kmongo.service.CustomCodecProvider@7f829c76, ProvidersCodecRegistry{codecProviders=[org.litote.kmongo.jackson.JacksonCodecProvider@1cb19dba]}]}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='30000 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, sendBufferSize=0}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, sendBufferSize=0}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, contextProvider=null}
-[cluster-ClusterId{value='63359babb3069e3c11cb0c4d', description='null'}-localhost:27017] INFO org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:15}] to localhost:27017
-[cluster-rtt-ClusterId{value='63359babb3069e3c11cb0c4d', description='null'}-localhost:27017] INFO org.mongodb.driver.connection - Opened connection [connectionId{localValue:2, serverValue:14}] to localhost:27017
-[cluster-ClusterId{value='63359babb3069e3c11cb0c4d', description='null'}-localhost:27017] INFO org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=34217333}
-[Test worker] INFO org.mongodb.driver.connection - Opened connection [connectionId{localValue:3, serverValue:16}] to localhost:27017
+[cluster-ClusterId{value='63380dd30bf1fb26112067f7', description='null'}-localhost:27017] INFO org.mongodb.driver.connection - Opened connection [connectionId{localValue:2, serverValue:4}] to localhost:27017
+[cluster-ClusterId{value='63380dd30bf1fb26112067f7', description='null'}-localhost:27017] INFO org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=36579792}
+[cluster-rtt-ClusterId{value='63380dd30bf1fb26112067f7', description='null'}-localhost:27017] INFO org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:5}] to localhost:27017
+[Test worker] INFO org.mongodb.driver.connection - Opened connection [connectionId{localValue:3, serverValue:6}] to localhost:27017
 [Test worker] ERROR org.oogwayrides.console.controllers.Controller - number of passangers exceeded or adventure is null or you can add yourself to your adventure
 </pre>
 </span>
@@ -124,7 +124,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.4.2</a> at 29 Sep 2022, 14:20:45</p>
+<a href="http://www.gradle.org">Gradle 7.4.2</a> at 1 Oct 2022, 10:52:21</p>
 </div>
 </div>
 </body>
