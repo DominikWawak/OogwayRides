@@ -8,19 +8,18 @@ import org.oogwayrides.console.main.colAdventures
 
 interface AdventureStore {
 
-    fun addAdventure(id:Int,location:String,date:String,plan:String,vehicle:String,numOfPass:String)
+    fun addAdventure(id:Int,location:String,date:String,plan:String,vehicle:String,numOfPass:String): Adventure?
 
     fun deleteAdventure(advList: List<Adventure>, input: Int, colAdventures: MongoCollection<Adventure>)
-
+    fun deleteAdventure( colAdventures: MongoCollection<Adventure>, id:Int)
 
     fun addPassenger(
-        newAdv: Adventure,
         selectedAdv: Adventure,
         user: User,
         colAdventures: MongoCollection<Adventure>
     ): Boolean
 
-
+    fun removePassenger(colAdventures: MongoCollection<Adventure>,id: Int,user:User)
     fun editAdventure(advList: List<Adventure>,input:String,location: String,date: String,plan: String,vehicle: String,numOfPass: String)
 
 

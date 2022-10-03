@@ -14,12 +14,15 @@ class AdventureMemStore:AdventureStore {
         plan: String,
         vehicle: String,
         numOfPass: String
-    ) {
+    ): Adventure? {
         try {
-            colAdventures.insertOne(Adventure(id, numOfPass.toInt(), user, vehicle, date, location, plan))
+            var newAdv= Adventure(id, numOfPass.toInt(), user, vehicle, date, location, plan)
+            colAdventures.insertOne(newAdv)
+            return newAdv
         } catch (e: Exception) {
 
         }
+        return null
     }
 
     override fun deleteAdventure(advList: List<Adventure>, input: Int, colAdventures: MongoCollection<Adventure>) {
@@ -28,21 +31,27 @@ class AdventureMemStore:AdventureStore {
         }
     }
 
+    override fun deleteAdventure( colAdventures: MongoCollection<Adventure>, id:Int) {
+
+            colAdventures.deleteOne(Adventure::_id eq id)
+
+    }
+
     override fun addPassenger(
-        newAdv: Adventure,
+
         selectedAdv: Adventure,
         user: User,
         colAdventures: MongoCollection<Adventure>
     ): Boolean {
 
-            if (newAdv != null && newAdv.numOfPass != 0 && !selectedAdv.organizer?.equals(user)!!) {
+            if (selectedAdv != null && selectedAdv.numOfPass != 0 && !selectedAdv.organizer?.equals(user)!!) {
 
-                user?.let { newAdv.passangers.add(it) }
+                user?.let { selectedAdv.passangers.add(it) }
                 colAdventures.updateOne(
                     Adventure::_id eq selectedAdv._id,
                     setValue(Adventure::numOfPass, selectedAdv.numOfPass - 1)
                 )
-                println(newAdv)
+                println(selectedAdv)
                 //colAdventures.updateOne(searchList[index.toInt()].json, newAdv).
                 //colAdventures.findOne(searchList[index.toInt()].json)
 
@@ -53,6 +62,12 @@ class AdventureMemStore:AdventureStore {
                 logger.error { "number of passangers exceeded or adventure is null or you can add yourself to your adventure" }
                 return false
             }
+
+    }
+
+    override fun removePassenger(colAdventures: MongoCollection<Adventure>, id: Int, user:User) {
+
+        colAdventures.updateOne(Adventure::_id eq id, pull(Adventure::passangers, user))
 
     }
 

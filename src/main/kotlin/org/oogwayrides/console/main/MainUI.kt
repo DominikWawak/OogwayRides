@@ -1,81 +1,68 @@
 package org.oogwayrides.console.main//package org.oogwayrides.console.main
-import javafx.collections.ObservableArray
-import javafx.collections.ObservableList
-import javafx.scene.control.TableView
+import javafx.scene.control.DatePicker
 import javafx.scene.control.TextArea
 import javafx.scene.control.TextField
+import org.litote.kmongo.eq
 import org.oogwayrides.console.controllers.memStore
 import org.oogwayrides.console.controllers.user
 import org.oogwayrides.console.models.Adventure
 import tornadofx.*
+import java.time.LocalDate
 
 
-var  adventures = colAdventures.find().toList().asObservable()
+var adventures = colAdventures.find().toList().asObservable()
+
 class LogIn : View() {
-        override val root = gridpane() {
-            var logIn: TextField? = null
-            row {
-                form {
-                    fieldset("Log In") {
-                         field("Name") {
-                            logIn =textfield()
-                        }
+    override val root = gridpane() {
+        var logIn: TextField? = null
+        row {
+            form {
+                fieldset("Log In") {
+                    field("Name") {
+                        logIn = textfield()
+                    }
 //                    field("Birthday") {
 //                        datepicker()
 //                    }
-                    }
+                }
 
+            }
+        }
+        row {
+            button("LogIn") {
+                action {
+                    if (logIn?.let { controller.logIn(it.text) } == true)
+                        replaceWith<MainView>()
                 }
             }
-             row {
-                 button("LogIn") {
-                     action {
-                            if(logIn?.let { controller.logIn(it.text) } == true)
-                              replaceWith<MainView>()
-                     }
-                 }
 
-                 button("Register") {
-                     action {
+            button("Register") {
+                action {
 
-                             replaceWith<Register>()
-                     }
-                 }
-             }
-
-
-
-                setPrefSize(900.0, 360.0)
+                    replaceWith<Register>()
+                }
             }
         }
 
 
 
-
-    class MainView : View() {
-        override val root = gridpane() {
-
-
-            var search: TextField? = null
-            row {
-                user?.let { label("    user: "+it.name)
-                    }
-                button("Search") {
-                    action {
-
-                        adventures.setAll(search?.let { memStore.search(it.text,colAdventures.find().toList()).toList().asObservable() }!!)
-
-                    }
-                }
-
-                form {
-                fieldset("Search") {
-                    field("") {
-                        search = textfield()
-                    }
-                }
+        setPrefSize(900.0, 360.0)
+    }
+}
 
 
+class MainView : View() {
+    override val root = gridpane() {
+
+
+        var searchT: TextField? = null
+
+        var chosenAdventure: Adventure? = null
+
+        row {
+            hbox {
+                user?.let {
+                    label("    user: " + it.name)
                 }
                 button("Log Out") {
                     action {
@@ -83,57 +70,238 @@ class LogIn : View() {
                     }
 
                 }
-            }
-                row {
-
-
-
-                     tableview(adventures) {
-                        readonlyColumn("ID",Adventure::_id)
-                       // readonlyColumn("organizer", Adventure::organizer.name)
-                        readonlyColumn("Location", Adventure::locaton)
-                        readonlyColumn("Date",Adventure::date)
-                         readonlyColumn("plan",Adventure::plan)
-                         readonlyColumn("Space Left",Adventure::numOfPass)
-                         useMaxWidth = true
-                         gridpaneConstraints {
-                             marginTop = 10.0
-                             columnSpan = 20
-
-                         }
-
-                         onUserSelect {
-                             adventure ->  println(adventure._id)
-                         }
-                    }
-
-                }
-
-            row {
 
 
                 form {
-                    hbox(20) {
-                        fieldset("Add/update") {
-                            hbox(20) {
-                                vbox {
-                                    field("Field l1a") { textfield() }
-                                    field("Field l2a") { textfield() }
-                                }
-                                vbox {
-                                    field("Field l1b") { textfield() }
-                                    field("Field l2b") { textfield() }
+                    fieldset("Search") {
+                        field("") {
+                            searchT = textfield()
+                        }
+                        button("Search") {
+                            action {
+
+                                adventures.setAll(searchT?.let {
+                                    memStore.search(it.text, colAdventures.find().toList()).toList().asObservable()
+                                }!!)
+
+                            }
+                        }
+                    }
+
+
+                }
+
+            }
+        }
+        row {
+
+
+            tableview(adventures) {
+                readonlyColumn("ID", Adventure::_id)
+                // readonlyColumn("organizer", Adventure::organizer.name)
+                readonlyColumn("Location", Adventure::locaton)
+                readonlyColumn("Date", Adventure::date)
+                readonlyColumn("plan", Adventure::plan)
+                readonlyColumn("Space Left", Adventure::numOfPass)
+
+                useMaxWidth = true
+                //                         gridpaneConstraints {
+//                             marginTop = 10.0
+//                             columnSpan = 20
+//
+//                         }
+
+
+                onUserSelect { adventure ->
+                    chosenAdventure = adventure
+                    println(adventure._id)
+//                    adventure.locaton?.let {
+//                        adventure.plan?.let { it1 ->
+//                            adventure.date?.let { it2 ->
+//                                adventure.vehicle?.let { it3 ->
+//                                    populateTextfields(
+//                                        it,
+//                                        it1, it2, it3, adventure.numOfPass
+//                                    )
+//                                }
+//                            }
+//                        }
+//                    }
+
+
+                }
+            }
+
+        }
+
+        row {
+
+
+            button("Join") {
+                action {
+                    user?.let { chosenAdventure?.let { it1 -> memStore.addPassenger(it1, it, colAdventures) } }
+
+                }
+            }
+            button("My Adventures") {
+                action {
+                    replaceWith<UserView>()
+
+                }
+            }
+        }
+
+    }
+}
+
+
+class UserView : View() {
+
+    override val root = gridpane() {
+
+        var dateT: DatePicker? = null
+        var locationT: TextField? = null
+        var planT: TextField? = null
+        var vehicleT: TextField? = null
+        var numofPassT: TextField? = null
+        var chosenAdventure: Adventure? = null
+
+        adventures.setAll(colAdventures.find(Adventure::organizer eq user).toList().asObservable())
+
+        row{
+            user?.let {
+                label("    user: " + it.name)
+            }
+            button("Go Back") {
+                action {
+                    replaceWith<MainView>()
+                    adventures.setAll(colAdventures.find().toList().asObservable())
+                }
+
+            }
+
+        }
+        row {
+
+
+            tableview(adventures) {
+                readonlyColumn("ID", Adventure::_id)
+                // readonlyColumn("organizer", Adventure::organizer.name)
+                readonlyColumn("Location", Adventure::locaton)
+                readonlyColumn("Date", Adventure::date)
+                readonlyColumn("plan", Adventure::plan)
+                readonlyColumn("Space Left", Adventure::numOfPass)
+                useMaxWidth = true
+                //                         gridpaneConstraints {
+//                             marginTop = 10.0
+//                             columnSpan = 20
+//
+//                         }
+                fun populateTextfields(
+                    location: String,
+                    plan: String,
+                    date: String,
+                    vehicle: String,
+                    numOfPass: Int
+                ) {
+                    locationT?.text = location
+                    planT?.text = plan
+                    dateT?.value = LocalDate.parse(date);
+                    vehicleT?.text = vehicle
+                    numofPassT?.text = numOfPass.toString()
+
+
+                }
+
+                onUserSelect { adventure ->
+                    chosenAdventure = adventure
+                    println(adventure._id)
+                    adventure.locaton?.let {
+                        adventure.plan?.let { it1 ->
+                            adventure.date?.let { it2 ->
+                                adventure.vehicle?.let { it3 ->
+                                    populateTextfields(
+                                        it,
+                                        it1, it2, it3, adventure.numOfPass
+                                    )
                                 }
                             }
                         }
                     }
+
+
                 }
-
-
             }
+
+        }
+
+        row {
+
+
+            form {
+                hbox(20) {
+                    fieldset("Add/update") {
+                        hbox(20) {
+                            vbox {
+                                field("Location") { locationT = textfield() }
+                                field("Date") { dateT = datepicker() }
+                            }
+                            vbox {
+                                field("plan") { planT = textfield() }
+                                field("vehicle") { vehicleT = textfield() }
+                            }
+                            vbox {
+                                field("Number of Passengers") { numofPassT = textfield() }
+                                hbox {
+                                    button("Add") {
+                                        action {
+                                            locationT?.let {
+                                                dateT?.let { it1 ->
+                                                    vehicleT?.let { it2 ->
+                                                        numofPassT?.let { it3 ->
+                                                            planT?.let { it4 ->
+                                                                memStore.addAdventure(
+                                                                    (0..10000).random(),
+                                                                    it.text,
+                                                                    it1.value.toString(),
+                                                                    it4.text,
+                                                                    it2.text,
+                                                                    it3.text
+                                                                )
+
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            adventures.setAll(colAdventures.find(Adventure::organizer eq user).toList().asObservable())
+                                        }
+                                    }
+                                    button("Update") {
+                                        action {
+                                            replaceWith<LogIn>()
+                                        }
+                                    }
+                                    button("Delete") {
+                                        action {
+                                            chosenAdventure?.let { memStore.deleteAdventure(colAdventures, it._id) }
+                                            // Refresh table view
+                                            adventures.remove(chosenAdventure)
+
+                                        }
+                                    }
+
+                                }
+
+                            }
+                        }
+                    }
+                }
             }
         }
 
+    }
+}
 
 class Register : View() {
     override val root = gridpane() {
@@ -143,11 +311,11 @@ class Register : View() {
             form {
                 fieldset("Register") {
                     field("Name") {
-                       name = textfield()
+                        name = textfield()
                     }
-                        field("Bio") {
-                          bio=  textarea()
-                        }
+                    field("Bio") {
+                        bio = textarea()
+                    }
 
 
                 }
@@ -167,8 +335,6 @@ class Register : View() {
                 }
             }
         }
-
-
 
 
     }
