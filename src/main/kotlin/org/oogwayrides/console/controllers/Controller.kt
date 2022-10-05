@@ -135,7 +135,11 @@ class Controller {
         print("new number of passangers?: ")
         val numOfPass = readLine()!!
 
-       memStore.editAdventure(advList,input,location,date,plan,vehicle,numOfPass)
+
+        if (input.toInt() < advList.size && input.toInt() >= 0) {
+            //
+            memStore.editAdventure(advList[input.toInt()],location,date,plan,vehicle,numOfPass)
+        }
     }
 
 

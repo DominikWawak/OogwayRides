@@ -20,7 +20,7 @@ interface AdventureStore {
     ): Boolean
 
     fun removePassenger(colAdventures: MongoCollection<Adventure>,id: Int,user:User)
-    fun editAdventure(advList: List<Adventure>,input:String,location: String,date: String,plan: String,vehicle: String,numOfPass: String)
+    fun editAdventure(choseAdventure:Adventure,location: String,date: String,plan: String,vehicle: String,numOfPass: String)
 
 
     fun filterByLocation(advList: List<Adventure>)

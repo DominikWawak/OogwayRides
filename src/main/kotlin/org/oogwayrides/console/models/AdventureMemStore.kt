@@ -71,15 +71,14 @@ class AdventureMemStore:AdventureStore {
 
     }
 
-    override fun editAdventure(advList: List<Adventure>,input:String,location: String,date: String,plan: String,vehicle: String,numOfPass: String) {
+    override fun editAdventure(chosenAdv: Adventure,location: String,date: String,plan: String,vehicle: String,numOfPass: String) {
 
 
         var updatedAdv: Adventure =
-            Adventure(advList[input.toInt()]._id, numOfPass.toInt(), user, vehicle, date, location, plan)
-        if (input.toInt() < advList.size && input.toInt() >= 0) {
-            // update
-            colAdventures.updateOne(advList[input.toInt()].json, updatedAdv)
-        }
+            Adventure(chosenAdv._id, numOfPass.toInt(), user, vehicle, date, location, plan,(chosenAdv.passangers));
+
+            colAdventures.updateOne(chosenAdv.json, updatedAdv)
+
     }
 
     override fun filterByLocation(advList: List<Adventure>)  {

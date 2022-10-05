@@ -23,7 +23,7 @@ class OogwayRidesView {
                 1 ->  controller.tripsNearMe()
                 2 ->  controller.addAdventure()
                 3 ->  controller.showMyTrips()
-                3 ->  controller.goingToTrips()
+                4->  controller.goingToTrips()
                 -1 -> println("Exiting App")
                 else -> println("Invalid Option")
             }

@@ -2,7 +2,10 @@ package org.oogwayrides.console.main//package org.oogwayrides.console.main
 import javafx.scene.control.DatePicker
 import javafx.scene.control.TextArea
 import javafx.scene.control.TextField
+import org.litote.kmongo.contains
 import org.litote.kmongo.eq
+import org.litote.kmongo.json
+import org.litote.kmongo.updateOne
 import org.oogwayrides.console.controllers.memStore
 import org.oogwayrides.console.controllers.user
 import org.oogwayrides.console.models.Adventure
@@ -83,6 +86,13 @@ class MainView : View() {
                                 adventures.setAll(searchT?.let {
                                     memStore.search(it.text, colAdventures.find().toList()).toList().asObservable()
                                 }!!)
+
+                            }
+                        }
+                        button("Refresh") {
+                            action {
+
+                                adventures.setAll(colAdventures.find().toList().asObservable())
 
                             }
                         }
@@ -182,15 +192,29 @@ class UserView : View() {
 
         }
         row {
+            radiobutton("Include signed up to events") {
+                action {
+                    if(isSelected){
+                        adventures.setAll(colAdventures.find(Adventure::passangers.contains(user)).toList().asObservable())
+                    }
+                    else{
+                        adventures.setAll(colAdventures.find(Adventure::organizer eq user).toList().asObservable())
+                    }
+                }
+            }
+        }
+        row{
 
 
             tableview(adventures) {
+
                 readonlyColumn("ID", Adventure::_id)
                 // readonlyColumn("organizer", Adventure::organizer.name)
                 readonlyColumn("Location", Adventure::locaton)
                 readonlyColumn("Date", Adventure::date)
                 readonlyColumn("plan", Adventure::plan)
                 readonlyColumn("Space Left", Adventure::numOfPass)
+                readonlyColumn("passengers",Adventure::passangers)
                 useMaxWidth = true
                 //                         gridpaneConstraints {
 //                             marginTop = 10.0
@@ -279,8 +303,21 @@ class UserView : View() {
                                     }
                                     button("Update") {
                                         action {
-                                            replaceWith<LogIn>()
+                                            chosenAdventure?.let { locationT?.let { it1 ->
+                                                planT?.let { it2 ->
+                                                    vehicleT?.let { it3 ->
+                                                        numofPassT?.let { it4 ->
+                                                            memStore.editAdventure(it,
+                                                                it1.text,
+                                                                dateT?.value.toString(), it2.text, it3.text, it4.text)
+                                                        }
+                                                    }
+                                                }
+                                            } }
+
+                                            adventures.setAll(colAdventures.find(Adventure::organizer eq user).toList().asObservable())
                                         }
+
                                     }
                                     button("Delete") {
                                         action {
