@@ -309,7 +309,8 @@ class UserView : View() {
                                                         numofPassT?.let { it4 ->
                                                             memStore.editAdventure(it,
                                                                 it1.text,
-                                                                dateT?.value.toString(), it2.text, it3.text, it4.text)
+                                                                dateT?.value.toString(), it2.text, it3.text, it4.text,
+                                                                colAdventures)
                                                         }
                                                     }
                                                 }
