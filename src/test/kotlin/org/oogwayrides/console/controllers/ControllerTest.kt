@@ -48,11 +48,11 @@ internal class ControllerTest {
 
         // check that passanger cant be added when no seats are available
         controller.addAdventure(adv1)
-        assertFalse(memStore.addPassenger(adv1,adv1,user1, colAdventures_t)) // No passengers left
+        assertFalse(memStore.addPassenger(adv1,user1, colAdventures_t)) // No passengers left
 
         // check that passenger gets added
         controller.addAdventure(adv2_same_id)
-        assertTrue(memStore.addPassenger(adv2_same_id,adv2_same_id,user2, colAdventures_t))
+        assertTrue(memStore.addPassenger(adv2_same_id,user2, colAdventures_t))
         assertEquals(user2,adv2_same_id.passangers[0])
 
         //check that the size got decrimented

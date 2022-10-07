@@ -20,6 +20,7 @@ var user: User? = null
 
 class Controller {
 
+    //TODO events you are going to view, be able to remove yourself from passangers
 
     fun start() {
         println(
@@ -134,7 +135,11 @@ class Controller {
         print("new number of passangers?: ")
         val numOfPass = readLine()!!
 
-       memStore.editAdventure(advList,input,location,date,plan,vehicle,numOfPass)
+
+        if (input.toInt() < advList.size && input.toInt() >= 0) {
+            //
+            memStore.editAdventure(advList[input.toInt()],location,date,plan,vehicle,numOfPass)
+        }
     }
 
 
@@ -158,9 +163,9 @@ class Controller {
                 1 -> {
                     println("Enter index of Adventure to join")
                     var index = readLine()!!
-                    var newAdv: Adventure? = searchList[index.toInt()]
-                    if (newAdv != null) {
-                        user?.let { memStore.addPassenger(newAdv, searchList[index.toInt()], it, colAdventures) }
+
+                    if (searchList[index.toInt()] != null) {
+                        user?.let { memStore.addPassenger(searchList[index.toInt()], it, colAdventures) }
                     }
                     oogwayRidesView.launchMenu()
 
@@ -215,6 +220,43 @@ class Controller {
                 3 -> {
                     memStore.filterByLocation(drivingToList)
                     showMyTrips()
+                }
+
+                -1 -> oogwayRidesView.launchMenu()
+                else -> println("Invalid Option")
+            }
+            println()
+        } while (input.toInt() != -1)
+
+    }
+
+    fun goingToTrips(){
+        var signedUpToList: List<Adventure> = colAdventures.find(Adventure::passangers.contains(user)).toList()
+        println("You are signed up for these events :")
+        for ((index, value) in signedUpToList.withIndex()) {
+            println("$index : $value")
+        }
+        println("")
+        println("OPTIONS:")
+        println(
+                    "1. Leave \n" +
+
+                    "-1. Go Back"
+        )
+
+        do {
+            println("choose Option")
+            var input = readLine()!!
+            when (input.toInt()) {
+                1 -> {
+                    println("Enter index of Adventure to leave")
+                    var index = readLine()!!
+
+                    if (signedUpToList[index.toInt()] != null) {
+                        user?.let { memStore.removePassenger(colAdventures,signedUpToList[index.toInt()]._id, it) }
+                        logger.info { "Passenger removed" }
+                    }
+                    oogwayRidesView.launchMenu()
                 }
 
                 -1 -> oogwayRidesView.launchMenu()
