@@ -11,6 +11,7 @@ import org.oogwayrides.console.models.Adventure
 import org.oogwayrides.console.models.AdventureMemStore
 import org.oogwayrides.console.models.User
 import org.oogwayrides.console.views.OogwayRidesView
+import java.lang.NumberFormatException
 import kotlin.math.log
 
 val memStore = AdventureMemStore()
@@ -19,9 +20,10 @@ var oogwayRidesView = OogwayRidesView()
 var user: User? = null
 
 class Controller {
-
-    //TODO events you are going to view, be able to remove yourself from passangers
-
+    /**
+     * Start method that kicks off the whole application
+     * Allows a user to log into the application
+     */
     fun start() {
         println(
             "\n" +
@@ -56,6 +58,8 @@ class Controller {
 
                     if (logIn(loginUserName)) {
                         oogwayRidesView.launchMenu()
+                    }else{
+                        logger.error { "User does not exist" }
                     }
                 }
 
@@ -70,6 +74,9 @@ class Controller {
     }
 
 
+    /**
+     * CRUD Functions for user to select, modify Objects
+     */
 
     fun logIn(loginUserName:String): Boolean {
         if (colUsers.findOne(User::name eq loginUserName) != null) {
@@ -138,53 +145,64 @@ class Controller {
 
         if (input.toInt() < advList.size && input.toInt() >= 0) {
             //
-            memStore.editAdventure(advList[input.toInt()],location,date,plan,vehicle,numOfPass)
+            memStore.editAdventure(advList[input.toInt()],location,date,plan,vehicle,numOfPass, colAdventures)
         }
     }
 
 
-
+    /**
+     * Searching for trips around a location.
+     */
     fun tripsNearMe() {
         print("Search Location: ")
         var searchLocation = readLine()!!
         val list: List<Adventure> = colAdventures.find().toList()
-        var  searchList = memStore.search(searchLocation,list)
-        println("")
-        println("OPTIONS:")
-        println(
-            "1. Join Trip \n" +
-                    "-1. Go Back"
-        )
+        var searchList = memStore.search(searchLocation, list)
 
-        do {
-            println("choose Option")
-            var input = readLine()!!
-            when (input.toInt()) {
-                1 -> {
-                    println("Enter index of Adventure to join")
-                    var index = readLine()!!
+        if (searchList.isNotEmpty()) {
+            println("")
+            println("OPTIONS:")
+            println(
+                "1. Join Trip \n" +
+                        "-1. Go Back"
+            )
 
-                    if (searchList[index.toInt()] != null) {
-                        user?.let { memStore.addPassenger(searchList[index.toInt()], it, colAdventures) }
+            do {
+                println("choose Option")
+                var input = readLine()!!
+                try{
+                when (input.toInt()) {
+                    1 -> {
+                        println("Enter index of Adventure to join")
+                        var index = readLine()!!
+
+                        if (searchList[index.toInt()] != null) {
+                            user?.let { memStore.addPassenger(searchList[index.toInt()], it, colAdventures) }
+                        }
+                        oogwayRidesView.launchMenu()
+
                     }
-                    oogwayRidesView.launchMenu()
 
+                    -1 -> oogwayRidesView.launchMenu()
+
+                    else -> println("Invalid Option")
                 }
-
-                -1 -> oogwayRidesView.launchMenu()
-                else -> println("Invalid Option")
+                println()
+            }catch (e:NumberFormatException){
+                logger.error { e }
             }
-            println()
-        } while (input.toInt() != -1)
+            } while (input.toInt() != -1)
 
 
+        }else{
+            logger.error { "No search found" }
+        }
     }
 
 
-
-
-
-
+    /**
+     * Listing trips you created, Allows you to modify and delete Adventures.
+     */
     fun showMyTrips() {
         var drivingToList: List<Adventure> = colAdventures.find(Adventure::organizer eq user).toList()
 
@@ -230,6 +248,10 @@ class Controller {
 
     }
 
+
+    /**
+     * Trips you are signed up for, Option to leave the trip
+     */
     fun goingToTrips(){
         var signedUpToList: List<Adventure> = colAdventures.find(Adventure::passangers.contains(user)).toList()
         println("You are signed up for these events :")

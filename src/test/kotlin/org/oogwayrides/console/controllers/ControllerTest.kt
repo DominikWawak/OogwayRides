@@ -1,5 +1,6 @@
 package org.oogwayrides.console.controllers
 
+import com.mongodb.client.FindIterable
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -42,6 +43,16 @@ internal class ControllerTest {
         assertFalse( controller.addAdventure(adv2_same_id))
 
     }
+
+//    @Test
+//    fun editAdventure() {
+//
+//        memStore.editAdventure(adv1,"Palma","2023-01-01","Go party","plane","3", colAdventures_t)
+//
+//        assertEquals("Palma", colAdventures_t.findOne(Adventure::locaton eq "Palma")?.locaton)
+//
+//    }
+
 
     @Test
     fun addPassenger() {
