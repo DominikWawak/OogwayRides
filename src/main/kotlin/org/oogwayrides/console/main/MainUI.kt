@@ -10,6 +10,7 @@ import org.oogwayrides.console.controllers.memStore
 import org.oogwayrides.console.controllers.user
 import org.oogwayrides.console.models.Adventure
 import tornadofx.*
+import java.io.File
 import java.time.LocalDate
 
 
@@ -17,6 +18,7 @@ var adventures = colAdventures.find().toList().asObservable()
 
 class LogIn : View() {
     override val root = gridpane() {
+
         var logIn: TextField? = null
         row {
             form {
@@ -50,7 +52,14 @@ class LogIn : View() {
 
 
         setPrefSize(900.0, 360.0)
+
+       style{
+           backgroundImage+= File("src/Screenshot 2021-09-14 at 16.58.29.png").toURI()
+       }
     }
+
+
+
 }
 
 
@@ -89,16 +98,17 @@ class MainView : View() {
 
                             }
                         }
-                        button("Refresh") {
-                            action {
 
-                                adventures.setAll(colAdventures.find().toList().asObservable())
-
-                            }
-                        }
                     }
 
 
+                }
+                button("Refresh") {
+                    action {
+
+                        adventures.setAll(colAdventures.find().toList().asObservable())
+
+                    }
                 }
 
             }
