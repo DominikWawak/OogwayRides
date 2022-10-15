@@ -1,5 +1,6 @@
 package org.oogwayrides.console.main//package org.oogwayrides.console.main
 import javafx.scene.control.DatePicker
+import javafx.scene.paint.Color
 import javafx.scene.control.TextArea
 import javafx.scene.control.TextField
 import org.litote.kmongo.contains
@@ -14,6 +15,7 @@ import java.io.File
 import java.time.LocalDate
 
 
+
 var adventures = colAdventures.find().toList().asObservable()
 
 class LogIn : View() {
@@ -26,9 +28,7 @@ class LogIn : View() {
                     field("Name") {
                         logIn = textfield()
                     }
-//                    field("Birthday") {
-//                        datepicker()
-//                    }
+
                 }
 
             }
@@ -38,6 +38,9 @@ class LogIn : View() {
                 action {
                     if (logIn?.let { controller.logIn(it.text) } == true)
                         replaceWith<MainView>()
+                }
+                style{
+                    backgroundColor = multi(Color.RED, Color.BLUE, Color.CYAN)
                 }
             }
 
@@ -54,7 +57,9 @@ class LogIn : View() {
         setPrefSize(900.0, 360.0)
 
        style{
-           backgroundImage+= File("src/Screenshot 2021-09-14 at 16.58.29.png").toURI()
+           backgroundImage+= File("src/tfxbgog.png").toURI()
+
+
        }
     }
 
@@ -188,31 +193,32 @@ class UserView : View() {
 
         adventures.setAll(colAdventures.find(Adventure::organizer eq user).toList().asObservable())
 
-        row{
-            user?.let {
-                label("    user: " + it.name)
-            }
-            button("Go Back") {
-                action {
-                    replaceWith<MainView>()
-                    adventures.setAll(colAdventures.find().toList().asObservable())
-                }
+hbox {
+    user?.let {
+        label("    user: " + it.name)
 
-            }
-
+    }
+    button("Go Back") {
+        action {
+            replaceWith<MainView>()
+            adventures.setAll(colAdventures.find().toList().asObservable())
         }
-        row {
-            radiobutton("Include signed up to events") {
-                action {
-                    if(isSelected){
-                        adventures.setAll(colAdventures.find(Adventure::passangers.contains(user)).toList().asObservable())
-                    }
-                    else{
-                        adventures.setAll(colAdventures.find(Adventure::organizer eq user).toList().asObservable())
-                    }
-                }
+
+    }
+    radiobutton("Include signed up to events") {
+        action {
+            if(isSelected){
+                adventures.setAll(colAdventures.find(Adventure::passangers.contains(user)).toList().asObservable())
+            }
+            else{
+                adventures.setAll(colAdventures.find(Adventure::organizer eq user).toList().asObservable())
             }
         }
+    }
+    spacing=5.0
+
+}
+row{}
         row{
 
 
@@ -300,7 +306,8 @@ class UserView : View() {
                                                                     it1.value.toString(),
                                                                     it4.text,
                                                                     it2.text,
-                                                                    it3.text
+                                                                    it3.text,
+                                                                    colAdventures
                                                                 )
 
                                                             }
