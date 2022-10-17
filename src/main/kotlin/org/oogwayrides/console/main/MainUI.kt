@@ -1,5 +1,6 @@
 package org.oogwayrides.console.main//package org.oogwayrides.console.main
 import javafx.scene.control.DatePicker
+import javafx.scene.paint.Color
 import javafx.scene.control.TextArea
 import javafx.scene.control.TextField
 import org.litote.kmongo.contains
@@ -10,13 +11,16 @@ import org.oogwayrides.console.controllers.memStore
 import org.oogwayrides.console.controllers.user
 import org.oogwayrides.console.models.Adventure
 import tornadofx.*
+import java.io.File
 import java.time.LocalDate
+
 
 
 var adventures = colAdventures.find().toList().asObservable()
 
 class LogIn : View() {
     override val root = gridpane() {
+
         var logIn: TextField? = null
         row {
             form {
@@ -24,9 +28,7 @@ class LogIn : View() {
                     field("Name") {
                         logIn = textfield()
                     }
-//                    field("Birthday") {
-//                        datepicker()
-//                    }
+
                 }
 
             }
@@ -36,6 +38,9 @@ class LogIn : View() {
                 action {
                     if (logIn?.let { controller.logIn(it.text) } == true)
                         replaceWith<MainView>()
+                }
+                style{
+                    backgroundColor = multi(Color.RED, Color.BLUE, Color.CYAN)
                 }
             }
 
@@ -50,7 +55,16 @@ class LogIn : View() {
 
 
         setPrefSize(900.0, 360.0)
+
+       style{
+           backgroundImage+= File("src/tfxbgog.png").toURI()
+
+
+       }
     }
+
+
+
 }
 
 
@@ -89,16 +103,17 @@ class MainView : View() {
 
                             }
                         }
-                        button("Refresh") {
-                            action {
 
-                                adventures.setAll(colAdventures.find().toList().asObservable())
-
-                            }
-                        }
                     }
 
 
+                }
+                button("Refresh") {
+                    action {
+
+                        adventures.setAll(colAdventures.find().toList().asObservable())
+
+                    }
                 }
 
             }
@@ -178,31 +193,32 @@ class UserView : View() {
 
         adventures.setAll(colAdventures.find(Adventure::organizer eq user).toList().asObservable())
 
-        row{
-            user?.let {
-                label("    user: " + it.name)
-            }
-            button("Go Back") {
-                action {
-                    replaceWith<MainView>()
-                    adventures.setAll(colAdventures.find().toList().asObservable())
-                }
+hbox {
+    user?.let {
+        label("    user: " + it.name)
 
-            }
-
+    }
+    button("Go Back") {
+        action {
+            replaceWith<MainView>()
+            adventures.setAll(colAdventures.find().toList().asObservable())
         }
-        row {
-            radiobutton("Include signed up to events") {
-                action {
-                    if(isSelected){
-                        adventures.setAll(colAdventures.find(Adventure::passangers.contains(user)).toList().asObservable())
-                    }
-                    else{
-                        adventures.setAll(colAdventures.find(Adventure::organizer eq user).toList().asObservable())
-                    }
-                }
+
+    }
+    radiobutton("Include signed up to events") {
+        action {
+            if(isSelected){
+                adventures.setAll(colAdventures.find(Adventure::passangers.contains(user)).toList().asObservable())
+            }
+            else{
+                adventures.setAll(colAdventures.find(Adventure::organizer eq user).toList().asObservable())
             }
         }
+    }
+    spacing=5.0
+
+}
+row{}
         row{
 
 
@@ -290,7 +306,8 @@ class UserView : View() {
                                                                     it1.value.toString(),
                                                                     it4.text,
                                                                     it2.text,
-                                                                    it3.text
+                                                                    it3.text,
+                                                                    colAdventures
                                                                 )
 
                                                             }
@@ -309,7 +326,8 @@ class UserView : View() {
                                                         numofPassT?.let { it4 ->
                                                             memStore.editAdventure(it,
                                                                 it1.text,
-                                                                dateT?.value.toString(), it2.text, it3.text, it4.text)
+                                                                dateT?.value.toString(), it2.text, it3.text, it4.text,
+                                                                colAdventures)
                                                         }
                                                     }
                                                 }

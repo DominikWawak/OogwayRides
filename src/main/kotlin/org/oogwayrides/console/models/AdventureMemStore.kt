@@ -18,7 +18,8 @@ class AdventureMemStore : AdventureStore {
         date: String,
         plan: String,
         vehicle: String,
-        numOfPass: String
+        numOfPass: String,
+        colAdventures: MongoCollection<Adventure>
     ): Adventure? {
         try {
             var newAdv = Adventure(id, numOfPass.toInt(), user, vehicle, date, location, plan)
@@ -28,6 +29,15 @@ class AdventureMemStore : AdventureStore {
 
         }
         return null
+    }
+
+    override fun addAdventure(adv: Adventure, colAdventures: MongoCollection<Adventure>): Boolean {
+        return try {
+            colAdventures.insertOne(adv)
+            true
+        } catch (e: Exception) {
+            false
+        }
     }
 
 
@@ -129,6 +139,7 @@ class AdventureMemStore : AdventureStore {
 
     /**
      * Searching by location
+     * Ignores the case and matches strings
      */
     override fun search(searchLocation: String, list: List<Adventure>): ArrayList<Adventure> {
 

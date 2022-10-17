@@ -5,31 +5,128 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2cbd94d5-eb77-4bac-a751-96a9b4121284" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/checksums/checksums.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tfxbgog.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$addUser$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$addUser$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$addUser$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$addUser$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$addUser$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$addUser$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$goingToTrips$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$goingToTrips$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$goingToTrips$signedUpToList$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$goingToTrips$signedUpToList$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$logIn$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$logIn$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$logIn$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$logIn$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$showMyTrips$drivingToList$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$showMyTrips$drivingToList$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$start$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$start$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$tripsNearMe$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$tripsNearMe$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$tripsNearMe$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller$tripsNearMe$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/ControllerKt$logger$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/ControllerKt$logger$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/ControllerKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/controllers/ControllerKt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$1$1$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$1$1$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$1$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$1$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$2$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$2$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$2$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$2$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$2$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$2$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn$root$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/LogIn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainUIKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainUIKt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1$3$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1$3$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1$3$1$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1$3$1$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1$3$1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1$3$1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1$3$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1$3$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1$4$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1$4$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$2$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$2$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$2$1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$2$1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$2$1$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$2$1$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$2$1$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$2$1$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$2$1$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$2$1$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$2$1$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$2$1$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$3$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$3$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$3$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$3$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$3$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$3$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$3$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$3$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView$root$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/MainView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$1$1$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$1$1$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$1$1$1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$1$1$1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$1$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$1$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$2$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$2$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$2$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$2$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$2$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$2$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register$root$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/Register.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$2$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$2$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$2$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$2$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$3$1$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$3$1$1$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$3$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$3$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$4$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$4$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$4$1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$4$1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$4$1$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$4$1$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$4$1$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$4$1$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$4$1$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$4$1$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$4$1$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$4$1$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$4$1$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$4$1$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$4$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$4$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$2$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$2$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$2$1$1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$2$1$1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$2$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$2$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$2$2$1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$2$2$1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$2$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$2$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$2$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$2$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$2$3$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$2$3$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$2$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$2$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView$root$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/main/UserView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$addPassenger$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$addPassenger$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$addPassenger$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$addPassenger$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$addPassenger$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$addPassenger$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$addPassenger$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$addPassenger$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$addPassenger$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$addPassenger$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$deleteAdventure$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$deleteAdventure$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$filterByLocation$$inlined$sortedBy$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$filterByLocation$$inlined$sortedBy$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$removePassenger$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$removePassenger$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$removePassenger$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$removePassenger$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$removePassenger$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$removePassenger$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$removePassenger$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore$removePassenger$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureMemStore.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureStore.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/org/oogwayrides/console/models/AdventureStore.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/test/org/oogwayrides/console/controllers/ControllerTest$addPassenger$adv$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/test/org/oogwayrides/console/controllers/ControllerTest$addPassenger$adv$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/test/org/oogwayrides/console/controllers/ControllerTest$deleteAdventure$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/test/org/oogwayrides/console/controllers/ControllerTest$deleteAdventure$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/test/org/oogwayrides/console/controllers/ControllerTest$deleteAdventure$drivingToList$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/test/org/oogwayrides/console/controllers/ControllerTest$deleteAdventure$drivingToList$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/kotlin/test/org/oogwayrides/console/controllers/ControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/test/org/oogwayrides/console/controllers/ControllerTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values" afterDir="false" />
@@ -94,9 +191,6 @@
       <change beforePath="$PROJECT_DIR$/build/kotlin/compileTestKotlin/cacheable/caches-jvm/lookups/file-to-id.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileTestKotlin/cacheable/caches-jvm/lookups/file-to-id.tab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/kotlin/compileTestKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileTestKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/kotlin/compileTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/kotlin/compileTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/kotlin/compileTestKotlin/cacheable/caches-jvm/lookups/lookups.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileTestKotlin/cacheable/caches-jvm/lookups/lookups.tab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/kotlin/compileTestKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileTestKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream" afterDir="false" />
@@ -114,6 +208,7 @@
       <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/oogwayrides/console/controllers/Controller.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/oogwayrides/console/controllers/Controller.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/oogwayrides/console/main/MainUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/oogwayrides/console/main/MainUI.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/oogwayrides/console/models/AdventureMemStore.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/oogwayrides/console/models/AdventureMemStore.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/oogwayrides/console/models/AdventureStore.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/oogwayrides/console/models/AdventureStore.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/org/oogwayrides/console/controllers/ControllerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/org/oogwayrides/console/controllers/ControllerTest.kt" afterDir="false" />
@@ -154,17 +249,23 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/dominikwawak/Documents/FinalYear/AppDev_Assignment01/OogwayRides&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/main/kotlin/org/oogwayrides/console/main" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
@@ -177,7 +278,7 @@
       <recent name="org.oogwayrides.console.controllers" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.MainKt">
+  <component name="RunManager" selected="Kotlin.MainUIKt">
     <configuration name="ControllerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -192,29 +293,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;org.oogwayrides.console.controllers.ControllerTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="ControllerTest.deleteAdventure" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;org.oogwayrides.console.controllers.ControllerTest.deleteAdventure&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -247,6 +325,29 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="ControllerTest.searchAdventures" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;org.oogwayrides.console.controllers.ControllerTest.searchAdventures&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.oogwayrides.console.main.MainKt" />
       <module name="OogwayRides.main" />
@@ -263,11 +364,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.MainKt" />
-        <item itemvalue="Gradle.ControllerTest.editAdventure" />
-        <item itemvalue="Gradle.ControllerTest" />
         <item itemvalue="Kotlin.MainUIKt" />
-        <item itemvalue="Gradle.ControllerTest.deleteAdventure" />
+        <item itemvalue="Gradle.ControllerTest.searchAdventures" />
+        <item itemvalue="Gradle.ControllerTest" />
+        <item itemvalue="Gradle.ControllerTest.editAdventure" />
+        <item itemvalue="Kotlin.MainKt" />
       </list>
     </recent_temporary>
   </component>
@@ -279,8 +380,13 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1663451349781</updated>
+      <workItem from="1665667340547" duration="302000" />
+      <workItem from="1665777264217" duration="610000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

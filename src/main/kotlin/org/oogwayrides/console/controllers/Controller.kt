@@ -113,18 +113,10 @@ class Controller {
         print("number of passangers: ")
         val numOfPass = readLine()!!
 
-        memStore.addAdventure(id,location,date,plan,vehicle,numOfPass)
+        memStore.addAdventure(id,location,date,plan,vehicle,numOfPass, colAdventures)
 
     }
 
-    fun addAdventure(adv: Adventure): Boolean {
-        return try {
-            colAdventures_t.insertOne(adv)
-            true
-        } catch (e: Exception) {
-            false
-        }
-    }
 
 
 
