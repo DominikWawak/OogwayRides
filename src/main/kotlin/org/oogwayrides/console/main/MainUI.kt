@@ -10,10 +10,10 @@ import org.litote.kmongo.updateOne
 import org.oogwayrides.console.controllers.memStore
 import org.oogwayrides.console.controllers.user
 import org.oogwayrides.console.models.Adventure
+import org.oogwayrides.console.models.User
 import tornadofx.*
 import java.io.File
 import java.time.LocalDate
-
 
 
 var adventures = colAdventures.find().toList().asObservable()
@@ -34,20 +34,22 @@ class LogIn : View() {
             }
         }
         row {
-            button("LogIn") {
-                action {
-                    if (logIn?.let { controller.logIn(it.text) } == true)
-                        replaceWith<MainView>()
+            hbox {
+                button("LogIn") {
+                    action {
+                        if (logIn?.let { controller.logIn(it.text) } == true)
+                            replaceWith<MainView>()
+                    }
+                    style {
+                        backgroundColor = multi(Color.RED, Color.BLUE, Color.CYAN)
+                    }
                 }
-                style{
-                    backgroundColor = multi(Color.RED, Color.BLUE, Color.CYAN)
-                }
-            }
 
-            button("Register") {
-                action {
+                button("Register") {
+                    action {
 
-                    replaceWith<Register>()
+                        replaceWith<Register>()
+                    }
                 }
             }
         }
@@ -56,13 +58,12 @@ class LogIn : View() {
 
         setPrefSize(900.0, 360.0)
 
-       style{
-           backgroundImage+= File("src/tfxbgog.png").toURI()
+        style {
+            backgroundImage += File("src/tfxbgog.png").toURI()
 
 
-       }
+        }
     }
-
 
 
 }
@@ -70,6 +71,11 @@ class LogIn : View() {
 
 class MainView : View() {
     override val root = gridpane() {
+        style {
+            backgroundImage += File("src/tfxbgog.png").toURI()
+
+
+        }
 
 
         var searchT: TextField? = null
@@ -78,14 +84,16 @@ class MainView : View() {
 
         row {
             hbox {
-                user?.let {
-                    label("    user: " + it.name)
-                }
-                button("Log Out") {
-                    action {
-                        replaceWith<LogIn>()
+                vbox {
+                    user?.let {
+                        label("    user: " + it.name)
                     }
+                    button("Log Out") {
+                        action {
+                            replaceWith<LogIn>()
+                        }
 
+                    }
                 }
 
 
@@ -94,89 +102,83 @@ class MainView : View() {
                         field("") {
                             searchT = textfield()
                         }
-                        button("Search") {
-                            action {
+                        hbox {
+                            button("Refresh") {
+                                action {
 
-                                adventures.setAll(searchT?.let {
-                                    memStore.search(it.text, colAdventures.find().toList()).toList().asObservable()
-                                }!!)
+                                    adventures.setAll(colAdventures.find().toList().asObservable())
 
+                                }
                             }
+                            button("Search") {
+                                action {
+
+                                    adventures.setAll(searchT?.let {
+                                        memStore.search(it.text, colAdventures.find().toList()).toList().asObservable()
+                                    }!!)
+
+                                }
+                            }
+
                         }
-
                     }
 
 
                 }
-                button("Refresh") {
-                    action {
 
-                        adventures.setAll(colAdventures.find().toList().asObservable())
-
-                    }
-                }
 
             }
         }
         row {
+            hbox {
 
 
-            tableview(adventures) {
-                readonlyColumn("ID", Adventure::_id)
-                // readonlyColumn("organizer", Adventure::organizer.name)
-                readonlyColumn("Location", Adventure::locaton)
-                readonlyColumn("Date", Adventure::date)
-                readonlyColumn("plan", Adventure::plan)
-                readonlyColumn("Space Left", Adventure::numOfPass)
+                tableview(adventures) {
+                    readonlyColumn("ID", Adventure::_id)
+                    // readonlyColumn("organizer", Adventure::organizer.name)
+                    readonlyColumn("Location", Adventure::locaton)
+                    readonlyColumn("Date", Adventure::date)
+                    readonlyColumn("plan", Adventure::plan)
+                    readonlyColumn("Space Left", Adventure::numOfPass)
 
-                useMaxWidth = true
-                //                         gridpaneConstraints {
+                    useMaxWidth = true
+                    //                         gridpaneConstraints {
 //                             marginTop = 10.0
 //                             columnSpan = 20
 //
 //                         }
 
 
-                onUserSelect { adventure ->
-                    chosenAdventure = adventure
-                    println(adventure._id)
-//                    adventure.locaton?.let {
-//                        adventure.plan?.let { it1 ->
-//                            adventure.date?.let { it2 ->
-//                                adventure.vehicle?.let { it3 ->
-//                                    populateTextfields(
-//                                        it,
-//                                        it1, it2, it3, adventure.numOfPass
-//                                    )
-//                                }
-//                            }
-//                        }
-//                    }
+                    onUserSelect { adventure ->
+                        chosenAdventure = adventure
+                        println(adventure._id)
 
-
+                    }
                 }
-            }
 
+            }
         }
 
         row {
 
+            hbox {
+                button("Join") {
+                    action {
+                        user?.let { chosenAdventure?.let { it1 -> memStore.addPassenger(it1, it, colAdventures) } }
 
-            button("Join") {
-                action {
-                    user?.let { chosenAdventure?.let { it1 -> memStore.addPassenger(it1, it, colAdventures) } }
-
+                    }
                 }
-            }
-            button("My Adventures") {
-                action {
-                    replaceWith<UserView>()
+                button("My Adventures") {
+                    action {
+                        replaceWith<UserView>()
 
+                    }
                 }
             }
         }
 
     }
+
 }
 
 
@@ -193,33 +195,34 @@ class UserView : View() {
 
         adventures.setAll(colAdventures.find(Adventure::organizer eq user).toList().asObservable())
 
-hbox {
-    user?.let {
-        label("    user: " + it.name)
+        hbox {
+            user?.let {
+                label("    user: " + it.name)
 
-    }
-    button("Go Back") {
-        action {
-            replaceWith<MainView>()
-            adventures.setAll(colAdventures.find().toList().asObservable())
-        }
-
-    }
-    radiobutton("Include signed up to events") {
-        action {
-            if(isSelected){
-                adventures.setAll(colAdventures.find(Adventure::passangers.contains(user)).toList().asObservable())
             }
-            else{
-                adventures.setAll(colAdventures.find(Adventure::organizer eq user).toList().asObservable())
-            }
-        }
-    }
-    spacing=5.0
+            button("Go Back") {
+                action {
+                    replaceWith<MainView>()
+                    adventures.setAll(colAdventures.find().toList().asObservable())
+                }
 
-}
-row{}
-        row{
+            }
+            radiobutton("Include signed up to events") {
+                action {
+                    if (isSelected) {
+                        adventures.setAll(
+                            colAdventures.find(Adventure::passangers.contains(user)).toList().asObservable()
+                        )
+                    } else {
+                        adventures.setAll(colAdventures.find(Adventure::organizer eq user).toList().asObservable())
+                    }
+                }
+            }
+            spacing = 5.0
+
+        }
+        row {}
+        row {
 
 
             tableview(adventures) {
@@ -230,7 +233,19 @@ row{}
                 readonlyColumn("Date", Adventure::date)
                 readonlyColumn("plan", Adventure::plan)
                 readonlyColumn("Space Left", Adventure::numOfPass)
-                readonlyColumn("passengers",Adventure::passangers)
+                readonlyColumn("passengers",Adventure::passangers ).cellFormat { it ->
+                 it.forEach{
+
+                     if(text==null)
+                        text=it.name
+                     else if( !text.contains(it.name)){
+                         text=text+", "+it.name
+                     }
+                   }
+                 
+                }
+
+
                 useMaxWidth = true
                 //                         gridpaneConstraints {
 //                             marginTop = 10.0
@@ -315,25 +330,36 @@ row{}
                                                     }
                                                 }
                                             }
-                                            adventures.setAll(colAdventures.find(Adventure::organizer eq user).toList().asObservable())
+                                            adventures.setAll(
+                                                colAdventures.find(Adventure::organizer eq user).toList().asObservable()
+                                            )
                                         }
                                     }
                                     button("Update") {
                                         action {
-                                            chosenAdventure?.let { locationT?.let { it1 ->
-                                                planT?.let { it2 ->
-                                                    vehicleT?.let { it3 ->
-                                                        numofPassT?.let { it4 ->
-                                                            memStore.editAdventure(it,
-                                                                it1.text,
-                                                                dateT?.value.toString(), it2.text, it3.text, it4.text,
-                                                                colAdventures)
+                                            chosenAdventure?.let {
+                                                locationT?.let { it1 ->
+                                                    planT?.let { it2 ->
+                                                        vehicleT?.let { it3 ->
+                                                            numofPassT?.let { it4 ->
+                                                                memStore.editAdventure(
+                                                                    it,
+                                                                    it1.text,
+                                                                    dateT?.value.toString(),
+                                                                    it2.text,
+                                                                    it3.text,
+                                                                    it4.text,
+                                                                    colAdventures
+                                                                )
+                                                            }
                                                         }
                                                     }
                                                 }
-                                            } }
+                                            }
 
-                                            adventures.setAll(colAdventures.find(Adventure::organizer eq user).toList().asObservable())
+                                            adventures.setAll(
+                                                colAdventures.find(Adventure::organizer eq user).toList().asObservable()
+                                            )
                                         }
 
                                     }
