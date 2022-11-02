@@ -1,4 +1,4 @@
-package com.myapp.oogwayrides_android
+package com.myapp.oogwayrides_android_activities
 
 import org.junit.Test
 

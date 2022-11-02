@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "389756053139",
+    "project_id": "oogwayrides-d0d36",
+    "storage_bucket": "oogwayrides-d0d36.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389756053139:android:5e588458b9d6868bb30f66",
+        "android_client_info": {
+          "package_name": "com.myapp.oogwayrides_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "389756053139-fv4a403fbpdmnobj2v1qpoj9fstv4lv5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVnZI2MzLAW2QRaG5Sro5LVZ3e49VKVs0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "389756053139-fv4a403fbpdmnobj2v1qpoj9fstv4lv5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

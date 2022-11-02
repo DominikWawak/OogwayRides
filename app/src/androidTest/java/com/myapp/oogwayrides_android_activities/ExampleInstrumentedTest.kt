@@ -1,4 +1,4 @@
-package com.myapp.oogwayrides_android
+package com.myapp.oogwayrides_android_activities
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
