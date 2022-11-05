@@ -4,15 +4,15 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
+import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -25,12 +25,17 @@ import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest
 import com.google.android.libraries.places.api.net.PlacesClient
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.myapp.oogwayrides_android.databinding.ActivityMapsBinding
-import java.util.Properties
 
 private const val KEY_CAMERA_POSITION = "camera_position"
 private const val KEY_LOCATION = "location"
+
+
+
+
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
@@ -74,6 +79,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        val linearLayout = findViewById<LinearLayout>(R.id.design_bottom_sheet)
+        bottomSheetBehavior = BottomSheetBehavior.from(linearLayout)
+
 
     }
 
@@ -119,8 +128,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // Get the current location of the device and set the position of the map.
         getDeviceLocation()
 
+        mMap.setOnMarkerClickListener(GoogleMap.OnMarkerClickListener {
+            Log.d("marker", "marker clicked"+it.title)
+            bottomSheetBehavior.state=BottomSheetBehavior.STATE_COLLAPSED
+            return@OnMarkerClickListener false
+        })
+        val testMarker =mMap?.addMarker(
+            MarkerOptions()
+                .position(LatLng(37.423003, -122.083961))
+                .title("MarkerTest")
+
+        )
+        //https://stackoverflow.com/questions/14226453/google-maps-api-v2-how-to-make-markers-clickable
+
 
     }
+
+
 
     /**
      * Gets the current location of the device, and positions the map's camera.
@@ -258,6 +282,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 .title("Sydney")
                 .position(defaultLocation)
                 .snippet("info Snippet"))
+
 
             // Prompt the user for permission.
             getLocationPermission()
