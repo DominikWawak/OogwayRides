@@ -2,13 +2,16 @@ package com.myapp.oogwayrides_android
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
+import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -19,7 +22,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
-import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
@@ -34,13 +36,20 @@ private const val KEY_LOCATION = "location"
 
 
 
+
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
+    private lateinit var mainButton:ImageView
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
     // The entry point to the Places API.
     private lateinit var placesClient: PlacesClient
+    private lateinit var sideMenu:LinearLayout
+    private lateinit var menuOutBtn:ImageView
+    private lateinit var myTripsBtn:ImageView
+    private lateinit var myFollowersBtn:ImageView
+    private lateinit var myAccountBtn:ImageView
 
 
     // The entry point to the Fused Location Provider.
@@ -81,7 +90,62 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
         val linearLayout = findViewById<LinearLayout>(R.id.design_bottom_sheet)
+
+        menuOutBtn = findViewById<ImageView>(R.id.openSideMenu)
+         sideMenu = findViewById<LinearLayout>(R.id.sideMenu)
         bottomSheetBehavior = BottomSheetBehavior.from(linearLayout)
+        mainButton = findViewById<ImageView>(R.id.mainButton)
+        myTripsBtn=findViewById(R.id.myAdvBtn)
+
+        bottomSheetBehavior.state=BottomSheetBehavior.STATE_HIDDEN
+
+
+
+       bottomSheetBehavior.addBottomSheetCallback(object :BottomSheetBehavior.BottomSheetCallback() {
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                    if(newState==BottomSheetBehavior.STATE_HIDDEN){
+                       mainButton.visibility=View.VISIBLE
+                    }
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+
+            }
+        })
+
+        menuOutBtn.setOnClickListener{
+            sideMenu.visibility=View.VISIBLE
+            menuOutBtn.visibility=View.INVISIBLE
+        }
+        //not needed
+//        sideMenu.setOnClickListener{
+//            menuOutBtn.visibility=View.VISIBLE
+//            sideMenu.visibility=View.INVISIBLE
+//        }
+
+        myTripsBtn.setOnClickListener{
+            val intent = Intent(this@MapsActivity, TripsActivity::class.java)
+            startActivity(intent)
+        }
+        mainButton.setOnClickListener{
+
+        }
+        mainButton.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                when (event?.action) {
+                    MotionEvent.ACTION_DOWN ->{
+                        mainButton.setImageResource(R.drawable.createadvbutton)
+                    }
+                    MotionEvent.ACTION_UP ->{
+                        mainButton.setImageResource(R.drawable.advbtn2)
+                    }
+                }
+
+                return v?.onTouchEvent(event) ?: true
+            }
+        })
+
+
 
 
     }
@@ -128,9 +192,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // Get the current location of the device and set the position of the map.
         getDeviceLocation()
 
+        mMap.setOnMapClickListener(GoogleMap.OnMapClickListener {
+            Log.d("TOUCH", "onMapTouch: ")
+            if(sideMenu.visibility==View.VISIBLE){
+                sideMenu.visibility=View.INVISIBLE
+                menuOutBtn.visibility=View.VISIBLE
+
+            }
+        })
+
         mMap.setOnMarkerClickListener(GoogleMap.OnMarkerClickListener {
             Log.d("marker", "marker clicked"+it.title)
             bottomSheetBehavior.state=BottomSheetBehavior.STATE_COLLAPSED
+            mainButton.visibility= View.INVISIBLE
             return@OnMarkerClickListener false
         })
         val testMarker =mMap?.addMarker(
@@ -311,7 +385,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             Log.e("Exception: %s", e.message, e)
         }
     }
-
 
 
 

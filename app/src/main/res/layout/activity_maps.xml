@@ -1,49 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
-android:layout_height="match_parent"
-android:layout_width="match_parent">
-
-<androidx.fragment.app.FragmentContainerView
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-
-    app:layout_constraintHorizontal_bias="1.0"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.0"
-    tools:context=".MapsFragment"
-    tools:layout="@android:layout/activity_list_item" />
-
-<ImageView
-    android:id="@+id/imageView4"
-    android:layout_width="96dp"
-    android:layout_height="97dp"
-    android:layout_marginBottom="36dp"
-    android:foreground="@drawable/advbtn2"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.498"
-    app:layout_constraintStart_toStartOf="parent"
-    app:srcCompat="@drawable/createadvbutton" />
+    >
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
-    <include
-        layout="@layout/bottom_sheet"
-        />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        >
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            tools:context=".MapsFragment"
+            tools:layout="@android:layout/activity_list_item" />
+
+        <ImageView
+            android:id="@+id/mainButton"
+            android:layout_width="96dp"
+            android:layout_height="97dp"
+            android:layout_marginBottom="88dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/advbtn2" />
+
+
+        <LinearLayout
+            android:id="@+id/sideMenu"
+            android:layout_width="100dp"
+            android:layout_height="285dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="144dp"
+            android:background="@drawable/pillmenu"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/myAdvBtn"
+                android:layout_width="74dp"
+                android:layout_height="75dp"
+                android:layout_marginBottom="10dp"
+                android:visibility="visible"
+                app:srcCompat="@drawable/mymapsbtn" />
+
+            <ImageView
+                android:id="@+id/myFollowersBtn"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginBottom="10dp"
+                android:visibility="visible"
+                app:srcCompat="@drawable/friendsbtn" />
+
+            <ImageView
+                android:id="@+id/myAccountBtn"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:visibility="visible"
+                app:srcCompat="@drawable/accountbtn" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/openSideMenu"
+            android:layout_width="53dp"
+            android:layout_height="83dp"
+            android:layout_marginTop="200dp"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/sidemenubutton" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include layout="@layout/bottom_sheet" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 

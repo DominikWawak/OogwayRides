@@ -17,6 +17,13 @@
         android:theme="@style/Theme.OogwayRides_Android"
         tools:targetApi="31">
         <activity
+            android:name=".TripsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".LogInActivity"
             android:exported="false">
             <meta-data
@@ -54,7 +61,7 @@
         <activity
             android:name=".MapsActivity"
             android:exported="true"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
     </application>
 
 </manifest>
