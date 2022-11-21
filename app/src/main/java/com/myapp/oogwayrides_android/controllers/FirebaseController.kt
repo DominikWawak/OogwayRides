@@ -3,6 +3,7 @@ package com.myapp.oogwayrides_android.controllers
 import android.util.Log
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.type.Fraction
@@ -43,14 +44,31 @@ class FirebaseController {
     }
 
     fun addUser(user: User,userUID:String){
-        db.collection("users").document(userUID)
-            .set(user)
-            .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference}")
+
+
+        val docRef = db.collection("users").document(userUID)
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+                } else {
+                    Log.d(TAG, "No such document, adding")
+                    db.collection("users").document(userUID)
+                        .set(user, SetOptions.merge())
+                        .addOnSuccessListener { documentReference ->
+                            Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference}")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w(TAG, "Error adding document", e)
+                        }
+                }
             }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
+            .addOnFailureListener { exception ->
+                Log.d(TAG, "get failed with ", exception)
             }
+
+
+
     }
 
 
@@ -67,6 +85,24 @@ class FirebaseController {
             .addOnFailureListener { exception ->
                 Log.d(TAG, "Error getting documents: ", exception)
             }
+
+    }
+
+    fun joinAdv(userUID:String,advID:String){
+
+
+        db.collection("users").document(userUID)
+            .update("tripsGoing",  FieldValue.arrayUnion(advID))
+            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully updated!")
+            }
+            .addOnFailureListener { e -> Log.w(TAG, "Error updating document", e) }
+
+
+        db.collection("adventures").document(advID)
+            .update("passangers",  FieldValue.arrayUnion(userUID))
+            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully updated!")
+            }
+            .addOnFailureListener { e -> Log.w(TAG, "Error updating document", e) }
 
     }
 }

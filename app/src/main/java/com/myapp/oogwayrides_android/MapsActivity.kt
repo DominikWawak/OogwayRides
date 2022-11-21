@@ -17,7 +17,6 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -33,7 +32,6 @@ import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.firebase.firestore.index.OrderedCodeWriter.SEPARATOR
 import com.myapp.oogwayrides_android.controllers.FirebaseController
 import com.myapp.oogwayrides_android.controllers.db
 import com.myapp.oogwayrides_android.databinding.ActivityMapsBinding
@@ -79,6 +77,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var advVehBox:TextView
     private lateinit var advDateBox:TextView
     private lateinit var advPlanBox:TextView
+    private lateinit var selectedAdventureId:String
 
 
 
@@ -108,6 +107,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         // Construct a PlacesClient
         Places.initialize(applicationContext, BuildConfig.MAPS_API_KEY)
         placesClient  = Places.createClient(this)
@@ -122,17 +122,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
         val linearLayout = findViewById<LinearLayout>(R.id.design_bottom_sheet)
+        val infoLayout = findViewById<LinearLayout>(R.id.view_adv)
+        var vi: View = LayoutInflater.from(this).inflate(R.layout.layout_inflate_info_window, null)
         datePickerButton= findViewById(R.id.datePickerBtn)
         addAdvLayout=findViewById(R.id.add_adv)
-        viewAdvLayout= findViewById(R.id.view_adv)
+        viewAdvLayout= findViewById(R.id.advview)
         menuOutBtn = findViewById<ImageView>(R.id.openSideMenu)
          sideMenu = findViewById<LinearLayout>(R.id.sideMenu)
         bottomSheetBehavior = BottomSheetBehavior.from(linearLayout)
-
-        advNameBox=findViewById(R.id.advNameBox)
-        advDateBox=findViewById(R.id.advDateBox)
-        advPlanBox=findViewById(R.id.advPlanBox)
-        advVehBox=findViewById(R.id.advVehBox)
 
 
         mainButton = findViewById<ImageView>(R.id.mainButton)
@@ -262,7 +259,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             if(sideMenu.visibility==View.INVISIBLE) {
                 touchMarker =
                     mMap.addMarker(MarkerOptions().position(it).title("Create Adventure"))!!
-                touchMarker.showInfoWindow()
+
 
                 locationOfAdventure+=it.latitude.toString()
                 locationOfAdventure+=it.longitude.toString()
@@ -285,12 +282,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             Log.d("marker", "marker clicked"+it.title)
 
 
+            if(it.title.equals("Create Adventure")) {
+                it.hideInfoWindow()
+            }else{
+                it.showInfoWindow()
+                selectedAdventureId= it.title?.split(",")?.get(4).toString()
+            }
+
             if((this::touchMarker.isInitialized && it!=touchMarker)|| !this::touchMarker.isInitialized) {
                 addAdvLayout.visibility=View.INVISIBLE
                 viewAdvLayout.visibility=View.VISIBLE
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                 mainButton.visibility = View.INVISIBLE
-                advNameBox.text=it.title
+
             }
             else{
                 viewAdvLayout.visibility=View.INVISIBLE
@@ -298,13 +302,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                 mainButton.visibility = View.INVISIBLE
             }
-            return@OnMarkerClickListener false
+            return@OnMarkerClickListener true
         })
 
 
         db.collection("adventures")
             .get()
             .addOnSuccessListener { result ->
+                Log.d(TAG, "Result: $result")
                 for (document in result) {
 
                     Log.d("locloc", "location: "+ document.data["location"] as ArrayList<String>)
@@ -313,7 +318,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     mMap?.addMarker(
                     MarkerOptions()
                         .position(LatLng(coordinates[0].toDouble(), coordinates[1].toDouble()))
-                        .title(document.data["name"].toString())
+                        .title(document.data["name"].toString()+","+document.data["date"].toString()+","+document.data["plan"].toString()+","+document.data["vehicle"].toString()+","+document.id)
+
 
                 )
                 }
@@ -322,23 +328,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 Log.d(TAG, "Error getting documents: ", exception)
             }
 
-//        for(marker in markers){
-//
-//            mMap?.addMarker(
-//                MarkerOptions()
-//                    .position(marker.position)
-//                    .title(marker.title)
-//
-//            )
-//        }
-
-
-        val testMarker =mMap?.addMarker(
-            MarkerOptions()
-                .position(LatLng(37.423003, -122.083961))
-                .title("MarkerTest")
-
-        )
         //https://stackoverflow.com/questions/14226453/google-maps-api-v2-how-to-make-markers-clickable
 
 
@@ -520,7 +509,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
 
-    fun joinAdventure(){
+    fun joinAdventure(view: View){
+        Log.d("JOIN", "joinAdventure: ")
+        firebaseController.joinAdv(currentUser,selectedAdventureId)
 
     }
 
@@ -538,7 +529,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val newMarker =mMap?.addMarker(
             MarkerOptions()
                 .position(LatLng(locationOfAdventure[0].toDouble(),locationOfAdventure[1].toDouble()))
-                .title(advName.text.toString())
+                .title(advName.text.toString()+","+date.text.toString()+","+plan.text.toString()+","+findViewById<RadioButton>(radioGroup.checkedRadioButtonId).text.toString())
+
+
 
         )
 
@@ -569,11 +562,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     class MyInfoWindowAdapter(mContext: Context) : GoogleMap.InfoWindowAdapter {
         var mWindow: View = LayoutInflater.from(mContext).inflate(R.layout.layout_inflate_info_window, null)
 
+
         private fun setInfoWindowText(marker: Marker) {
-            val title = marker.title
-            val tvTitle = mWindow.findViewById<TextView>(R.id.advNameBox)
+
+            val title = marker.title?.split(",")?.get(0) ?: "none"
+
+
+            val advDateBox=mWindow.findViewById<TextView>(R.id.dateBox)
+            val  advPlanBox=mWindow.findViewById<TextView>(R.id.planBox)
+            val advVehBox=mWindow.findViewById<TextView>(R.id.vehBox)
+
+
+            val tvTitle = mWindow.findViewById<TextView>(R.id.nameBox)
             if (!TextUtils.isEmpty(title)) {
                 tvTitle.text = title
+                advDateBox.text=marker.title?.split(",")?.get(1) ?: "none"
+                advPlanBox.text=marker.title?.split(",")?.get(2) ?: "none"
+                advVehBox.text=marker.title?.split(",")?.get(3) ?: "none"
             }
         }
 
@@ -590,48 +595,3 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
 }
-
-//class InfoWindowAdapter(private val myContext: FragmentActivity) : GoogleMap.InfoWindowAdapter {
-//    private val view: View
-//
-//    init {
-//        val inflater =
-//            myContext.applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-//        view = inflater.inflate(
-//            R.layout.layout_inflate_info_window,
-//            null
-//        )
-//    }
-//
-//    override fun getInfoContents(marker: Marker): View? {
-//        if (marker != null
-//            && marker.isInfoWindowShown
-//        ) {
-//            marker.hideInfoWindow()
-//            marker.showInfoWindow()
-//        }
-//        return null
-//    }
-//
-//    override fun getInfoWindow(marker: Marker): View? {
-//        val title = marker.title
-//        val titleUi = view.findViewById<View>(R.id.title) as TextView
-//        if (title != null) {
-//            titleUi.text = title
-//        } else {
-//            titleUi.text = ""
-//            titleUi.visibility = View.GONE
-//        }
-//        val snippet = marker.snippet
-//        val snippetUi = view
-//            .findViewById<View>(R.id.snippet) as TextView
-//        if (snippet != null) {
-//            val SnippetArray: Array<String> = snippet.split(SEPARATOR).toTypedArray()
-//            snippetUi.text = SnippetArray[0]
-//        } else {
-//            snippetUi.text = ""
-//        }
-//        return view
-//    }
-//}
-
