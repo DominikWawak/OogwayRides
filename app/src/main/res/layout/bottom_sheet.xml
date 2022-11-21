@@ -25,11 +25,13 @@
 
 
         <LinearLayout
+            android:id="@+id/advview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFBFB"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:visibility="visible">
 
             <View
                 android:layout_width="30dp"
@@ -39,30 +41,150 @@
                 android:background="#D900FF" />
 
 
-
-            <TextView
+            <Button
+                android:id="@+id/advJoinBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Adventure"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:onClick="joinAdventure"
+                android:text="join" />
 
-            <TextView
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_marginTop="15dp"
-                android:text="Plan is to go surfing"
-                android:textColor="@color/black" />
-
-            <TextView
-                style="@style/TextAppearance.AppCompat.Medium"
+            <Button
+                android:id="@+id/advOrganizerBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Organizer" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/add_adv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFBFB"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:visibility="invisible">
+
+            <View
+                android:layout_width="30dp"
+                android:layout_height="5dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:text="some link here"
-                android:textColor="@color/black" />
+                android:layout_marginBottom="10dp"
+                android:background="#D900FF" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/adv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="58dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:ems="10"
+                    android:hint="Name"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/adv_date"
+                    android:layout_width="88dp"
+                    android:layout_height="57dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:ems="10"
+                    android:hint="date"
+                    android:inputType="date" />
+
+                <ImageButton
+                    android:id="@+id/datePickerBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:onClick="pickDate"
+                    app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioGroup
+                    android:id="@+id/transportGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="51dp"
+                    android:orientation='horizontal'>
+
+                    <RadioButton
+                        android:id="@+id/car"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="car" />
+
+                    <RadioButton
+                        android:id="@+id/train"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="train" />
+
+                    <RadioButton
+                        android:id="@+id/bus"
+                        android:layout_width="65dp"
+                        android:layout_height="match_parent"
+                        android:text="bus" />
+
+                    <RadioButton
+                        android:id="@+id/plane"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="plane" />
+
+                    <RadioButton
+                        android:id="@+id/foot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="foot" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/plan"
+                android:layout_width="238dp"
+                android:layout_height="57dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="plan"
+                android:inputType="textMultiLine" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/groupSize"
+                    android:layout_width="107dp"
+                    android:layout_height="71dp"
+                    android:ems="10"
+                    android:hint="group size"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/joinBtn"
+                    android:layout_width="197dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="createAdventure"
+                    android:text="Create" />
+            </LinearLayout>
 
 
         </LinearLayout>
