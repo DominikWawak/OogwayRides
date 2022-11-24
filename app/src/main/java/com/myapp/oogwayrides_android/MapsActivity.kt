@@ -103,7 +103,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -130,6 +129,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         menuOutBtn = findViewById<ImageView>(R.id.openSideMenu)
          sideMenu = findViewById<LinearLayout>(R.id.sideMenu)
         bottomSheetBehavior = BottomSheetBehavior.from(linearLayout)
+
 
 
         mainButton = findViewById<ImageView>(R.id.mainButton)
