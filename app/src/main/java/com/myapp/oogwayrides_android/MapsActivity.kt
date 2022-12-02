@@ -37,6 +37,8 @@ import com.myapp.oogwayrides_android.controllers.db
 import com.myapp.oogwayrides_android.databinding.ActivityMapsBinding
 
 import com.myapp.oogwayrides_android.models.Adventure
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.runBlocking
 
 
 private const val KEY_CAMERA_POSITION = "camera_position"
@@ -48,7 +50,6 @@ val firebaseController=FirebaseController()
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
-
 
     private lateinit var addAdvLayout: LinearLayout
     private lateinit var viewAdvLayout: LinearLayout
@@ -101,7 +102,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private var likelyPlaceLatLngs: Array<LatLng?> = arrayOfNulls(0)
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override  fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -129,12 +130,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         menuOutBtn = findViewById<ImageView>(R.id.openSideMenu)
          sideMenu = findViewById<LinearLayout>(R.id.sideMenu)
         bottomSheetBehavior = BottomSheetBehavior.from(linearLayout)
-
-
-
+        myFollowersBtn=findViewById(R.id.myFollowersBtn)
         mainButton = findViewById<ImageView>(R.id.mainButton)
         myTripsBtn=findViewById(R.id.myAdvBtn)
-
+        myAccountBtn=findViewById(R.id.myAccountBtn)
         bottomSheetBehavior.state=BottomSheetBehavior.STATE_HIDDEN
 
         advName= findViewById(R.id.adv_name)
@@ -147,11 +146,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val myIntent = intent
 
         currentUser = myIntent.getStringExtra("currentUser").toString()
-
-
-
-
-
 
 
        bottomSheetBehavior.addBottomSheetCallback(object :BottomSheetBehavior.BottomSheetCallback() {
@@ -181,6 +175,33 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             val intent = Intent(this@MapsActivity, TripsActivity::class.java)
             startActivity(intent)
         }
+        myFollowersBtn.setOnClickListener{
+            val intent = Intent(this@MapsActivity, FollowersActivity::class.java)
+            startActivity(intent)
+        }
+        myAccountBtn.setOnClickListener{
+            val docRef = db.collection("users").document(currentUser)
+            docRef.get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+
+                        Log.d(TAG, "getUser: "+document.data)
+                        val intent = Intent(this@MapsActivity, AccountActivity::class.java)
+                        intent.putExtra("userName", document.data?.get("name") as String)
+                        intent.putExtra("userEmail", document.data?.get("email") as String)
+                        intent.putExtra("userPic", document.data?.get("profilePic") as String)
+                        startActivity(intent)
+                    } else {
+                        Log.d(TAG, "No such document")
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.d(TAG, "get failed with ", exception)
+                }
+
+
+        }
         mainButton.setOnClickListener{
 
         }
@@ -198,9 +219,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 return v?.onTouchEvent(event) ?: true
             }
         })
-
-
-
 
     }
 
@@ -319,8 +337,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     MarkerOptions()
                         .position(LatLng(coordinates[0].toDouble(), coordinates[1].toDouble()))
                         .title(document.data["name"].toString()+","+document.data["date"].toString()+","+document.data["plan"].toString()+","+document.data["vehicle"].toString()+","+document.id)
-
-
                 )
                 }
             }

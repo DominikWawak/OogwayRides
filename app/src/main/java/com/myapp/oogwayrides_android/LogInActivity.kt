@@ -93,17 +93,13 @@ class LogInActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
                     val user = auth.currentUser
+
+//                    // add to firebase
+//                    if (user != null) {
+//
+//                    }
                     updateUI(user)
 
-                    // add to firebase
-                    if (user != null) {
-                        user.displayName?.let { user.email?.let { it1 ->
-                            User(it,"",user.photoUrl,
-                                it1,null,null
-                            )
-                        } }
-                            ?.let { firebaseController.addUser(it,user.uid) }
-                    }
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
@@ -115,13 +111,21 @@ class LogInActivity : AppCompatActivity() {
 
     // [START signin]
     private fun signIn() {
+
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
+
     }
     // [END signin]
 
     private fun updateUI(user: FirebaseUser?) {
         if(user!=null) {
+            user.displayName?.let { user.email?.let { it1 ->
+                User(it,"",user.photoUrl,
+                    it1,null,null
+                )
+            } }
+                ?.let { firebaseController.addUser(it,user.uid) }
             val intent = Intent(this@LogInActivity, MapsActivity::class.java)
             intent.putExtra("currentUser",user.uid)
             startActivity(intent)
