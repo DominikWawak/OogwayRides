@@ -2,4 +2,6 @@
     <string name="app_name">OogwayRides_Android</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="your_web_client_id">389756053139-fv4a403fbpdmnobj2v1qpoj9fstv4lv5.apps.googleusercontent.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

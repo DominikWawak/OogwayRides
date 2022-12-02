@@ -1,14 +1,14 @@
 package com.myapp.oogwayrides_android.controllers
 
 import android.util.Log
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.type.Fraction
 import com.myapp.oogwayrides_android.models.Adventure
 import com.myapp.oogwayrides_android.models.User
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.tasks.await
 
 
 val db = Firebase.firestore
@@ -49,7 +49,7 @@ class FirebaseController {
         val docRef = db.collection("users").document(userUID)
         docRef.get()
             .addOnSuccessListener { document ->
-                if (document != null) {
+                if (document.data != null) {
                     Log.d(TAG, "DocumentSnapshot data: ${document.data}")
                 } else {
                     Log.d(TAG, "No such document, adding")
@@ -72,19 +72,23 @@ class FirebaseController {
     }
 
 
-    fun getAdventures(){
-        var adventures = arrayListOf<Adventure>()
+     suspend fun getAdventures(): ArrayList<String> {
+        var adventures = arrayListOf<String>()
         db.collection("adventures")
             .get()
+
             .addOnSuccessListener { result ->
                 for (document in result) {
                     Log.d(TAG, "${document.id} => ${document.data}")
-
+                    adventures.add(document.data["name"] as String)
                 }
             }
             .addOnFailureListener { exception ->
                 Log.d(TAG, "Error getting documents: ", exception)
             }
+
+
+        return adventures
 
     }
 
@@ -105,4 +109,55 @@ class FirebaseController {
             .addOnFailureListener { e -> Log.w(TAG, "Error updating document", e) }
 
     }
+
+fun newGetAdv(): ArrayList<Adventure> {
+    var adventures = arrayListOf<Adventure>()
+    db.collection("adventures")
+        .addSnapshotListener { value, e ->
+            if (e != null) {
+                Log.w(TAG, "Listen failed.", e)
+                return@addSnapshotListener
+            }
+
+            for (doc in value!!) {
+                doc.data["name"]
+                adventures.add(Adventure(doc.data["organizer"].toString(),
+                    doc.data["location"] as ArrayList<String>,null,doc.data["name"].toString(),
+                    doc.data["vehicle"] as String?, doc.data["date"] as String?,null, doc.data["plan"] as String?
+
+                ))
+//                doc.getString("name")?.let {
+//                    adventures.add(it)
+//                }
+            }
+
+            Log.d(TAG, "Current advs : $adventures")
+        }
+
+
+    return adventures
+
+}
+
+
+    suspend fun getUser(userId:String): Map<String, Any>? =coroutineScope{
+        var foundUser: Map<String, Any>? =null
+        val docRef = db.collection("users").document(userId)
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+                    foundUser=document.data
+                    Log.d(TAG, "getUser: "+document.data)
+                } else {
+                    Log.d(TAG, "No such document")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d(TAG, "get failed with ", exception)
+            }
+            .await()
+        return@coroutineScope foundUser
+    }
+
 }
