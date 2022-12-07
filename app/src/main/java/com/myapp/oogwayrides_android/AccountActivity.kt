@@ -17,6 +17,12 @@ import com.google.firebase.ktx.Firebase
 import com.myapp.oogwayrides_android.databinding.ActivityAccountBinding
 import com.myapp.oogwayrides_android.databinding.AdvItemBinding
 
+/**
+ * Account Activity
+ *
+ * Used to dsplay the current logged in user and display their info as well as
+ * log out and delete functionality.
+ */
 class AccountActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAccountBinding
     private lateinit var auth: FirebaseAuth
@@ -41,6 +47,7 @@ class AccountActivity : AppCompatActivity() {
 
         var name: String? = intent.getStringExtra("userName")
         emailField.text=intent.getStringExtra("userEmail")
+
         //https://stackoverflow.com/questions/2471935/how-to-load-an-imageview-by-url-in-android
         Glide.with(this).load(intent.getStringExtra("userPic")).into(pic);
 
@@ -51,9 +58,7 @@ class AccountActivity : AppCompatActivity() {
 
         logOutButton.setOnClickListener{
             auth.signOut();
-
             // Google sign out
-
             googleSignInClient.signOut().addOnCompleteListener(this) {
                 if(it.isComplete){
                     val intent = Intent(this@AccountActivity, LogInActivity::class.java)

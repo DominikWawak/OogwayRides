@@ -19,14 +19,14 @@
 
     <TextView
         android:id="@+id/advRVName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="234dp"
+        android:layout_height="73dp"
         android:fontFamily="monospace"
         android:text="Great Adventure"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.297"
+        app:layout_constraintHorizontal_bias="0.426"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView5"
         app:layout_constraintVertical_bias="0.169" />
@@ -47,58 +47,59 @@
 
     <TextView
         android:id="@+id/planItem"
-        android:layout_width="208dp"
-        android:layout_height="80dp"
+        android:layout_width="225dp"
+        android:layout_height="72dp"
         android:fontFamily="monospace"
         android:text="Plan"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.394"
+        app:layout_constraintHorizontal_bias="0.435"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/advRVName"
-        app:layout_constraintVertical_bias="0.142" />
+        app:layout_constraintVertical_bias="0.038" />
 
     <TextView
         android:id="@+id/locationItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="169dp"
+        android:layout_height="60dp"
         android:fontFamily="monospace"
         android:text="location"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.097"
+        app:layout_constraintHorizontal_bias="0.387"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/planItem"
-        app:layout_constraintVertical_bias="0.298" />
+        app:layout_constraintVertical_bias="0.078" />
 
     <TextView
         android:id="@+id/organizerItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="114dp"
+        android:layout_height="52dp"
         android:layout_marginTop="20dp"
         android:fontFamily="monospace"
         android:text="Organizer"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.243"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/locationItem"
-        app:layout_constraintVertical_bias="0.245" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/vehItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="41dp"
         android:fontFamily="monospace"
         android:text="Car"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toEndOf="@+id/organizerItem"
         app:layout_constraintTop_toBottomOf="@+id/locationItem"
-        app:layout_constraintVertical_bias="0.441" />
+        app:layout_constraintVertical_bias="0.318" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
