@@ -3,16 +3,17 @@ package com.myapp.oogwayrides_android
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
+import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -23,10 +24,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MapStyleOptions
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest
@@ -35,10 +33,8 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.myapp.oogwayrides_android.controllers.FirebaseController
 import com.myapp.oogwayrides_android.controllers.db
 import com.myapp.oogwayrides_android.databinding.ActivityMapsBinding
-
 import com.myapp.oogwayrides_android.models.Adventure
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.runBlocking
+import java.util.*
 
 
 private const val KEY_CAMERA_POSITION = "camera_position"
@@ -68,7 +64,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var datePicker:DatePicker
     private lateinit var datePickerButton: ImageButton
     private lateinit var advName:EditText
-    private lateinit var date:EditText
+    private lateinit var date:TextView
     private lateinit var radioGroup: RadioGroup
     private lateinit var plan:EditText
     private lateinit var groupSize:EditText
@@ -78,7 +74,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var advVehBox:TextView
     private lateinit var advDateBox:TextView
     private lateinit var advPlanBox:TextView
+    private lateinit var deleteAdv:Button
+    private lateinit var joinAdvBtn:Button
     private lateinit var selectedAdventureId:String
+    private lateinit var selectedMarker:Marker
+    private lateinit var searchBar:EditText
 
 
 
@@ -141,7 +141,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         radioGroup=findViewById(R.id.transportGroup)
         plan=findViewById(R.id.plan)
         groupSize=findViewById(R.id.groupSize)
-
+        deleteAdv=findViewById(R.id.delete_adv_btn)
+        joinAdvBtn=findViewById(R.id.advJoinBtn)
+        searchBar=findViewById(R.id.searchT)
 
         val myIntent = intent
 
@@ -160,16 +162,35 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         })
 
+        searchBar.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
+                Log.d("ENTER", "pressed ")
+                val geocoder = Geocoder(this, Locale.getDefault())
+
+                var addresses: MutableList<Address?>? = geocoder.getFromLocationName(searchBar.text.toString(), 1)
+
+                if (addresses != null) {
+                    if(addresses.size>0){
+                        val lat = addresses[0]!!.latitude
+                        val lon = addresses[0]!!.longitude
+
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat, lon), 15F));
+                        // Zoom in, animating the camera.
+                        mMap.animateCamera(CameraUpdateFactory.zoomTo(10F), 2000, null);
+
+                    }
+                }
+
+                return@OnKeyListener true
+            }
+            false
+        })
 
         menuOutBtn.setOnClickListener{
             sideMenu.visibility=View.VISIBLE
             menuOutBtn.visibility=View.INVISIBLE
         }
-        //not needed
-//        sideMenu.setOnClickListener{
-//            menuOutBtn.visibility=View.VISIBLE
-//            sideMenu.visibility=View.INVISIBLE
-//        }
+
 
         myTripsBtn.setOnClickListener{
             val intent = Intent(this@MapsActivity, TripsActivity::class.java)
@@ -210,6 +231,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 when (event?.action) {
                     MotionEvent.ACTION_DOWN ->{
                         mainButton.setImageResource(R.drawable.createadvbutton)
+                        getDeviceLocation()
                     }
                     MotionEvent.ACTION_UP ->{
                         mainButton.setImageResource(R.drawable.advbtn2)
@@ -251,7 +273,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
         mMap.setInfoWindowAdapter(MyInfoWindowAdapter(this))
-        mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.mapstyle_night))
+        mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.mapstyle_retro))
         // Add a marker in Sydney and move the camera
 //        val sydney = LatLng(-34.0, 151.0)
 //        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
@@ -267,6 +289,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         getDeviceLocation()
 
         mMap.setOnMapClickListener(GoogleMap.OnMapClickListener {
+            locationOfAdventure.clear()
             Log.d("TOUCH", "onMapTouch: ")
             bottomSheetBehavior.state=BottomSheetBehavior.STATE_HIDDEN
 
@@ -297,33 +320,69 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         })
 
         mMap.setOnMarkerClickListener(GoogleMap.OnMarkerClickListener {
-            Log.d("marker", "marker clicked"+it.title)
+            Log.d("marker", "marker clicked" + it.title)
+            selectedMarker=it
 
-
-            if(it.title.equals("Create Adventure")) {
+            if (it.title.equals("Create Adventure")) {
                 it.hideInfoWindow()
-            }else{
+            } else {
                 it.showInfoWindow()
-                selectedAdventureId= it.title?.split(",")?.get(4).toString()
+                selectedAdventureId = it.title?.split(",")?.get(4).toString()
             }
 
-            if((this::touchMarker.isInitialized && it!=touchMarker)|| !this::touchMarker.isInitialized) {
-                addAdvLayout.visibility=View.INVISIBLE
-                viewAdvLayout.visibility=View.VISIBLE
+            if ((this::touchMarker.isInitialized && it != touchMarker) || !this::touchMarker.isInitialized) {
+                addAdvLayout.visibility = View.INVISIBLE
+                viewAdvLayout.visibility = View.VISIBLE
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                 mainButton.visibility = View.INVISIBLE
 
-            }
-            else{
-                viewAdvLayout.visibility=View.INVISIBLE
-                addAdvLayout.visibility=View.VISIBLE
+            } else {
+                viewAdvLayout.visibility = View.INVISIBLE
+                addAdvLayout.visibility = View.VISIBLE
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                 mainButton.visibility = View.INVISIBLE
             }
+
+        if(this::selectedAdventureId.isInitialized){
+            val docRef = db.collection("adventures").document(selectedAdventureId)
+            docRef.get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+                        if (document.data?.get("organizer").toString() == currentUser) {
+                            deleteAdv.visibility = View.VISIBLE
+                            //TODO notfy with already going
+                            joinAdvBtn.visibility=View.INVISIBLE
+
+                        } else {
+                            deleteAdv.visibility = View.INVISIBLE
+                            joinAdvBtn.visibility=View.VISIBLE
+                        }
+                        // arrayOf(doc.data["passangers"]).joinToString(" ").contains(
+                        if(arrayOf(document.data?.get("passangers")).joinToString(" ").contains(currentUser)){
+                            joinAdvBtn.visibility=View.INVISIBLE
+                        }
+
+                    } else {
+                        Log.d(TAG, "No such document")
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.d(TAG, "get failed with ", exception)
+                }
+        }
             return@OnMarkerClickListener true
         })
+        //load
+        loadMarkers()
+
+    }
 
 
+    /**
+     * Load custom adventure markers onto the map
+     */
+    fun loadMarkers(){
         db.collection("adventures")
             .get()
             .addOnSuccessListener { result ->
@@ -334,10 +393,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     var coordinates = document.data["location"] as ArrayList<String>
 
                     mMap?.addMarker(
-                    MarkerOptions()
-                        .position(LatLng(coordinates[0].toDouble(), coordinates[1].toDouble()))
-                        .title(document.data["name"].toString()+","+document.data["date"].toString()+","+document.data["plan"].toString()+","+document.data["vehicle"].toString()+","+document.id)
-                )
+                        MarkerOptions()
+                            .position(LatLng(coordinates[0].toDouble(), coordinates[1].toDouble()))
+                            .title(document.data["name"].toString()+","+document.data["date"].toString()+","+document.data["plan"].toString()+","+document.data["vehicle"].toString()+","+document.id)
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker))
+                    )
                 }
             }
             .addOnFailureListener { exception ->
@@ -345,7 +405,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
 
         //https://stackoverflow.com/questions/14226453/google-maps-api-v2-how-to-make-markers-clickable
-
 
     }
 
@@ -505,7 +564,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         try {
             if (locationPermissionGranted) {
                 mMap?.isMyLocationEnabled = true
-                mMap?.uiSettings?.isMyLocationButtonEnabled = true
+                mMap?.uiSettings?.isMyLocationButtonEnabled = false //hide camera
+
             } else {
                 mMap?.isMyLocationEnabled = false
                 mMap?.uiSettings?.isMyLocationButtonEnabled = false
@@ -520,7 +580,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
 
-    fun pickDate(){
+    fun pickDate(view:View){
+        val calendar = Calendar.getInstance()
+        val currYear = calendar.get(Calendar.YEAR)
+        val currMonth = calendar.get(Calendar.MONTH)
+        val currDay= calendar.get(Calendar.DAY_OF_MONTH)
+        val datePicker=DatePickerDialog(this,DatePickerDialog.OnDateSetListener{view,year,month,dayOfMonth->
+            date.text=""+dayOfMonth+"/"+(month+1)+"/"+year
+        },currYear,currMonth,currDay)
+
+        datePicker.show()
 
     }
 
@@ -528,31 +597,37 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     fun joinAdventure(view: View){
         Log.d("JOIN", "joinAdventure: ")
         firebaseController.joinAdv(currentUser,selectedAdventureId)
+        bottomSheetBehavior.state=BottomSheetBehavior.STATE_HIDDEN
+        var toast=Toast.makeText(applicationContext, "🗺 JOINED Adventure", Toast.LENGTH_SHORT)
+        toast.setGravity(Gravity.TOP or Gravity.CENTER_HORIZONTAL, 0, 0)
+        toast.show()
 
+    }
+    fun deleteAdventure(view: View){
+        Log.d("Delete", "deleteAdv")
+        firebaseController.deleteAdv(currentUser,selectedAdventureId)
+        selectedMarker.remove()
     }
 
     fun createAdventure(view: View){
 
-
         if(!advName.text.equals("")) {
                 firebaseController.addAdventure(Adventure(currentUser,locationOfAdventure,null,advName.text.toString(),findViewById<RadioButton>(radioGroup.checkedRadioButtonId).text.toString(),date.text.toString(),groupSize.text.toString().toInt(),plan.text.toString()))
-                //TODO handle the bottom sheet after successful add
-                //update passangers for organiser add to passangers for the added
 
+                bottomSheetBehavior.state=BottomSheetBehavior.STATE_HIDDEN
+                var toast=Toast.makeText(applicationContext, "✅ Adventure Created", Toast.LENGTH_SHORT)
+                toast.setGravity(Gravity.TOP or Gravity.CENTER_HORIZONTAL , 0, 0)
+                toast.show()
+
+                advName.text.clear()
+                date.text=""
+                radioGroup.clearCheck()
+                plan.text.clear()
+                groupSize.text.clear()
+
+
+                loadMarkers()
             }
-
-        //Add marker
-        val newMarker =mMap?.addMarker(
-            MarkerOptions()
-                .position(LatLng(locationOfAdventure[0].toDouble(),locationOfAdventure[1].toDouble()))
-                .title(advName.text.toString()+","+date.text.toString()+","+plan.text.toString()+","+findViewById<RadioButton>(radioGroup.checkedRadioButtonId).text.toString())
-
-
-
-        )
-
-
-
 
     }
 
@@ -575,6 +650,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
+
+    /**
+     * This is the class used to style window that appears when the marker is clicked.
+     */
     class MyInfoWindowAdapter(mContext: Context) : GoogleMap.InfoWindowAdapter {
         var mWindow: View = LayoutInflater.from(mContext).inflate(R.layout.layout_inflate_info_window, null)
 

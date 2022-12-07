@@ -11,7 +11,11 @@ import com.myapp.oogwayrides_android.MapsActivity
 import com.myapp.oogwayrides_android.R
 
 
-// youtube
+/**
+ * Splash screen displayed for 3 seconds before activity starts
+ * Help from youtube
+ */
+
 class SplashScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

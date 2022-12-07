@@ -17,10 +17,10 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.myapp.oogwayrides_android.models.User
-
-
 /**
+ * Log In activity
  * Demonstrate Firebase Authentication using a Google ID Token.
+ *
  */
 class LogInActivity : AppCompatActivity() {
 

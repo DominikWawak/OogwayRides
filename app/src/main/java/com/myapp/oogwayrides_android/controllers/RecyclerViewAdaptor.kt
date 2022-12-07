@@ -1,5 +1,8 @@
 package com.myapp.oogwayrides_android.controllers
 
+import android.location.Address
+import android.location.Geocoder
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,10 +10,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.myapp.oogwayrides_android.R
 import com.myapp.oogwayrides_android.models.Adventure
+import java.util.*
+import kotlin.math.log
 
 
+/**
+ * Adventures Recycler View Adapter
+ * Used on Recycler views displaying adventure details
+ */
 class RecyclerViewAdaptor(private val items:ArrayList<Adventure>): RecyclerView.Adapter<RecyclerViewAdaptor.ViewHolder>() {
-
+    lateinit var view:View
     class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val advNameText:TextView=itemView.findViewById(R.id.advRVName)
         val advPlanText:TextView=itemView.findViewById(R.id.planItem)
@@ -23,7 +32,7 @@ class RecyclerViewAdaptor(private val items:ArrayList<Adventure>): RecyclerView.
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view= LayoutInflater.from(parent.context).inflate(R.layout.adv_item,parent,false)
+        view= LayoutInflater.from(parent.context).inflate(R.layout.adv_item,parent,false)
         return  ViewHolder(view)
     }
 
@@ -31,7 +40,12 @@ class RecyclerViewAdaptor(private val items:ArrayList<Adventure>): RecyclerView.
         // bind the data to holder
         holder.advNameText.text=items[position].name
         holder.advPlanText.text=items[position].plan
-        holder.advlocationText.text=items[position].location[0]
+
+        val geocoder = Geocoder(view.context, Locale.getDefault())
+
+        var addresses: MutableList<Address?>? = geocoder.getFromLocation(items[position].location[0].toDouble(), items[position].location[1].toDouble() , 1)
+        val cityName: String = addresses!![0]?.getAddressLine(0) ?: ""
+        holder.advlocationText.text=cityName
         holder.advOrganizerText.text=items[position].organizer
         holder.advvehText.text=items[position].vehicle
         holder.advDateText.text=items[position].date

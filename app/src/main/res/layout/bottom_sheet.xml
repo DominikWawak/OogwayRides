@@ -54,6 +54,15 @@
                 android:layout_height="wrap_content"
                 android:text="Organizer" />
 
+            <Button
+                android:id="@+id/delete_adv_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FF0000"
+                android:onClick="deleteAdventure"
+                android:text="Delete"
+                android:visibility="invisible" />
+
 
         </LinearLayout>
 
@@ -86,9 +95,10 @@
                     android:layout_marginBottom="10dp"
                     android:ems="10"
                     android:hint="Name"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textColor="#000000" />
 
-                <EditText
+                <TextView
                     android:id="@+id/adv_date"
                     android:layout_width="88dp"
                     android:layout_height="57dp"
@@ -96,7 +106,8 @@
                     android:layout_marginBottom="10dp"
                     android:ems="10"
                     android:hint="date"
-                    android:inputType="date" />
+                    android:inputType="date"
+                    android:textColor="#000000"/>
 
                 <ImageButton
                     android:id="@+id/datePickerBtn"
@@ -124,31 +135,36 @@
                         android:id="@+id/car"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="car" />
+                        android:text="car"
+                        android:textColor="#000000"/>
 
                     <RadioButton
                         android:id="@+id/train"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="train" />
+                        android:text="train"
+                        android:textColor="#000000"/>
 
                     <RadioButton
                         android:id="@+id/bus"
                         android:layout_width="65dp"
                         android:layout_height="match_parent"
-                        android:text="bus" />
+                        android:text="bus"
+                        android:textColor="#000000"/>
 
                     <RadioButton
                         android:id="@+id/plane"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="plane" />
+                        android:text="plane"
+                        android:textColor="#000000"/>
 
                     <RadioButton
                         android:id="@+id/foot"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="foot" />
+                        android:text="foot"
+                        android:textColor="#000000"/>
 
                 </RadioGroup>
 
@@ -161,7 +177,8 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="plan"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:textColor="#000000"/>
 
 
             <LinearLayout
@@ -175,7 +192,8 @@
                     android:layout_height="71dp"
                     android:ems="10"
                     android:hint="group size"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:textColor="#000000"/>
 
                 <Button
                     android:id="@+id/joinBtn"

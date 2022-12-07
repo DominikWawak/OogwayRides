@@ -18,6 +18,10 @@ import com.myapp.oogwayrides_android.models.Adventure
 import kotlin.math.log
 
 
+/**
+ * Fragment used to display all adventures current user is going to
+ */
+
 class GoingAdvsFragment : Fragment() {
     private lateinit var adaptor:RecyclerViewAdaptor
     private lateinit var auth: FirebaseAuth

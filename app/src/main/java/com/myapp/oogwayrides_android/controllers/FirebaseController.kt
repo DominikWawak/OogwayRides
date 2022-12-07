@@ -12,9 +12,13 @@ import kotlinx.coroutines.tasks.await
 
 
 val db = Firebase.firestore
+
+/**
+ * Firebase Controller Class
+ * Used for CRUD methods for firebase firestore.
+ */
 class FirebaseController {
     var TAG = "firebase controller"
-
 
 
     fun addAdventure(adventure: Adventure){
@@ -44,8 +48,6 @@ class FirebaseController {
     }
 
     fun addUser(user: User,userUID:String){
-
-
         val docRef = db.collection("users").document(userUID)
         docRef.get()
             .addOnSuccessListener { document ->
@@ -110,7 +112,25 @@ class FirebaseController {
 
     }
 
-fun newGetAdv(): ArrayList<Adventure> {
+
+    fun deleteAdv(userUID:String,advID:String){
+
+
+        db.collection("users").document(userUID)
+            .update("tripsOrganised",  FieldValue.arrayRemove(advID))
+            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully updated!")
+            }
+            .addOnFailureListener { e -> Log.w(TAG, "Error updating document", e) }
+
+
+        db.collection("adventures").document(advID)
+            .delete()
+            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
+            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+    }
+
+
+    fun newGetAdv(): ArrayList<Adventure> {
     var adventures = arrayListOf<Adventure>()
     db.collection("adventures")
         .addSnapshotListener { value, e ->
